@@ -1,0 +1,123 @@
+{% extends 'nav.html' %}
+
+{% block customCSS %}
+{% parent %}
+<link href="css/style.css" rel='stylesheet' type='text/css'/>
+{% endblock %}
+
+{% block title %}
+{% parent %}
+Dashboard
+{% endblock %}
+
+{% block dashclass %}class="active"{% endblock %}
+
+{% block content %}
+{% parent %}
+<div class="row clearfix">
+    <div class="col-xs-12 col-sm-6">
+        <p>Statistics of the month</p>
+        <div class="jumbotron">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for task in taskSummary%}
+                    <tr>
+                        <td>{{ task._id}} tasks</td>
+                        <td>{{task.count}}</td>
+                    </tr>
+                    {% endfor %}
+                    {% if taskSummary.length == 0 %}
+                    <tr>
+                        <td>Completed tasks</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Open tasks</td>
+                        <td>0</td>
+                    </tr>
+                    {% endif %}
+                    {% for lead in leadCount%}
+                    <tr>
+                        <td>Lead Count</td>
+                        <td>{{lead.leadCount}}</td>
+                    </tr>
+                    {% endfor %}
+                    {% for payment in paymentSummary%}
+                    <tr>
+                        <td> {% if payment._id %}Completed {% elseif !payment._id %}Pending {% endif %} Payments</td>
+                        <td>{{payment.revenue}} ({{payment.count}})</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <p>Graphical Representation</p>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-xs-12 col-sm-6">
+        <p>Last 5 Missed Tasks</p>
+        <div class="details">
+            <table id="taskData" class="table table-striped table-bordered data-table" width="100%">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Follow-up Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for task in missedTasks %}
+                <tr>
+                    <td><a href="/counsellor/userDetails/{{ task.user._id.toString() }}">{{ task.user.first_name }}
+                        {{
+                        task.user.last_name }}</a></td>
+                    <td>{{ task.followupDetails }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.followupDate.toISOString().substring(0,10) }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <p>Top 5 Upcoming Tasks</p>
+        <div class="details">
+            <table id="taskData1" class="table table-striped table-bordered data-table" width="100%">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Follow-up Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for task in upcomingTasks %}
+                <tr>
+                    <td><a href="/counsellor/userDetails/{{ task.user._id.toString() }}">{{ task.user.first_name }}
+                        {{
+                        task.user.last_name }}</a></td>
+                    <td>{{ task.followupDetails }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.followupDate.toISOString().substring(0,10) }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

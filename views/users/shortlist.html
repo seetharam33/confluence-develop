@@ -1,0 +1,474 @@
+{% extends 'nav.html' %}
+
+{% block customCSS %}
+{% parent %}
+<link href="css/user.css" rel='stylesheet' type='text/css'/>
+{% endblock %}
+
+{% block title %}
+{% parent %}
+Shortlists
+{% endblock %}
+
+{% block shortlist %}class="active"{% endblock %}
+
+{% block content %}
+{% parent %}
+<table id="userData" class="table table-striped table-bordered" width="100%">
+    <thead>
+    <tr>
+        <th>UNIVERSITY</th>
+        <th>Course Name</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Deadline</th>
+        <th>IELTS</th>
+        <th>GRE</th>
+        <th>Annual Fee</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for college in userData.usaShortlists %}
+    <tr>
+        <td><a target="_blank"
+               href="/users/shortlist/usa/{{userData._id.toString()}}">{{college.university.university}}</a>
+        </td>
+        <td>{{college.university.coursename }}</td>
+        <td>{{college.university.state }}</td>
+        <td>{{college.university.city}}</td>
+        <td> Usa</td>
+        <td>{{college.university.deadline.round1}}</td>
+        <td>{{college.university.ielts}}</td>
+        <td>{{college.university.gre}}</td>
+        <td></td>
+        <td>
+            {% if !userData._admitted %}
+              {% if college.status=="Declined" %}
+                You have Declined
+                <a href="/users/undodecline/usa/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                    <button class="btn btn-default btn-sm">Undo Decline</button>
+                </a>
+              {% else %}
+            <a href="/users/declineshortlist/usa/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                <button class="btn btn-default btn-sm">Decline</button>
+            </a>
+              {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% for college in userData.ausShortlists %}
+    <tr>
+        <td><a target="_blank"
+               href="/users/shortlist/aus/{{userData._id.toString()}}">{{college.university.university}}</a>
+        </td>
+        <td>{{college.university.coursename }}</td>
+        <td>{{college.university.state }}</td>
+        <td>{{college.university.city}}</td>
+        <td> Australia</td>
+        <td>{{college.university.deadline.round1}}</td>
+        <td>{{college.university.ielts}}</td>
+        <td>{{college.university.gre}}</td>
+        <td></td>
+        <td>
+            {% if !userData._admitted %}
+              {% if college.status=="Declined" %}
+                You have Declined
+                <a href="/users/undodecline/aus/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                    <button class="btn btn-default btn-sm">Undo Decline</button>
+                </a>
+              {% else %}
+            <a href="/users/declineshortlist/aus/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                <button class="btn btn-default btn-sm">Decline</button>
+            </a>
+              {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% for college in userData.canadaShortlists %}
+    <tr>
+        <td><a target="_blank"
+               href="/users/shortlist/canada/{{userData._id.toString()}}">{{college.university.university}}</a>
+        </td>
+        <td>{{college.university.coursename }}</td>
+        <td>{{college.university.state }}</td>
+        <td>{{college.university.city}}</td>
+        <td> Canada</td>
+        <td>{{college.university.deadline.round1}}</td>
+        <td>{{college.university.ielts}}</td>
+        <td>{{college.university.gre}}</td>
+        <td></td>
+        <td>
+            {% if !userData._admitted %}
+              {% if college.status=="Declined" %}
+                You have Declined
+                <a href="/users/undodecline/canada/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                    <button class="btn btn-default btn-sm">Undo Decline</button>
+                </a>
+              {% else %}
+            <a href="/users/declineshortlist/canada/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                <button class="btn btn-default btn-sm">Decline</button>
+            </a>
+              {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% for college in userData.germanyShortlists %}
+    <tr>
+        <td><a target="_blank"
+               href="/users/shortlist/germany/{{userData._id.toString()}}">{{college.university.university}}</a>
+        </td>
+        <td>{{college.university.coursename }}</td>
+        <td>{{college.university.state }}</td>
+        <td>{{college.university.city}}</td>
+        <td> germany</td>
+        <td>{{college.university.deadline.round1}}</td>
+        <td>{{college.university.ielts}}</td>
+        <td>{{college.university.gre}}</td>
+        <td></td>
+        <td>
+            {% if !userData._admitted %}
+              {% if college.status=="Declined" %}
+                You have Declined
+                <a href="/users/undodecline/germany/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                    <button class="btn btn-default btn-sm">Undo Decline</button>
+                </a>
+              {% else %}
+            <a href="/users/declineshortlist/germany/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                <button class="btn btn-default btn-sm">Decline</button>
+            </a>
+              {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% for college in userData.irelandShortlists %}
+    <tr>
+        <td><a target="_blank"
+               href="/users/shortlist/ireland/{{userData._id.toString()}}">{{college.university.university}}</a>
+        </td>
+        <td>{{college.university.coursename }}</td>
+        <td>{{college.university.state }}</td>
+        <td>{{college.university.city}}</td>
+        <td> ireland</td>
+        <td>{{college.university.deadline.round1}}</td>
+        <td>{{college.university.ielts}}</td>
+        <td>{{college.university.gre}}</td>
+        <td></td>
+        <td>
+            {% if !userData._admitted %}
+              {% if college.status=="Declined" %}
+                You have Declined
+                <a href="/users/undodecline/ireland/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                    <button class="btn btn-default btn-sm">Undo Decline</button>
+                </a>
+              {% else %}
+            <a href="/users/declineshortlist/ireland/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                <button class="btn btn-default btn-sm">Decline</button>
+            </a>
+              {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% for college in userData.nzShortlists %}
+    <tr>
+        <td><a target="_blank"
+               href="/users/shortlist/nz/{{userData._id.toString()}}">{{college.university.university}}</a>
+        </td>
+        <td>{{college.university.coursename }}</td>
+        <td>{{college.university.state }}</td>
+        <td>{{college.university.city}}</td>
+        <td> New Zealand</td>
+        <td>{{college.university.deadline.round1}}</td>
+        <td>{{college.university.ielts}}</td>
+        <td>{{college.university.gre}}</td>
+        <td></td>
+        <td>
+            {% if !userData._admitted %}
+              {% if college.status=="Declined" %}
+                You have Declined
+                <a href="/users/undodecline/nz/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                    <button class="btn btn-default btn-sm">Undo Decline</button>
+                </a>
+              {% else %}
+            <a href="/users/declineshortlist/nz/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                <button class="btn btn-default btn-sm">Decline</button>
+            </a>
+              {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% for college in userData.ukShortlists %}
+    <tr>
+        <td><a target="_blank"
+               href="/users/shortlist/uk/{{userData._id.toString()}}">{{college.university.university}}</a>
+        </td>
+        <td>{{college.university.coursename }}</td>
+        <td>{{college.university.state }}</td>
+        <td>{{college.university.city}}</td>
+        <td> UK</td>
+        <td>{{college.university.deadline.round1}}</td>
+        <td>{{college.university.ielts}}</td>
+        <td>{{college.university.gre}}</td>
+        <td></td>
+        <td>
+            {% if !userData._admitted %}
+              {% if college.status=="Declined" %}
+                You have Declined
+                <a href="/users/undodecline/uk/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                    <button class="btn btn-default btn-sm">Undo Decline</button>
+                </a>
+              {% else %}
+            <a href="/users/declineshortlist/uk/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                <button class="btn btn-default btn-sm">Decline</button>
+            </a>
+              {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% for college in userData.spainShortlists %}
+    <tr>
+        <td><a target="_blank"
+               href="/users/shortlist/spain/{{userData._id.toString()}}">{{college.university.university}}</a>
+        </td>
+        <td>{{college.university.coursename }}</td>
+        <td>{{college.university.state }}</td>
+        <td>{{college.university.city}}</td>
+        <td> spain</td>
+        <td>{{college.university.deadline.round1}}</td>
+        <td>{{college.university.ielts}}</td>
+        <td>{{college.university.gre}}</td>
+        <td></td>
+        <td>
+            {% if !userData._admitted %}
+              {% if college.status=="Declined" %}
+                You have Declined
+                <a href="/users/undodecline/spain/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                    <button class="btn btn-default btn-sm">Undo Decline</button>
+                </a>
+              {% else %}
+            <a href="/users/declineshortlist/spain/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                <button class="btn btn-default btn-sm">Decline</button>
+            </a>
+              {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% for college in userData.dubaiShortlists %}
+    <tr>
+        <td><a target="_blank"
+               href="/users/shortlist/dubai/{{userData._id.toString()}}">{{college.university.university}}</a>
+        </td>
+        <td>{{college.university.coursename }}</td>
+        <td>{{college.university.state }}</td>
+        <td>{{college.university.city}}</td>
+        <td> dubai</td>
+        <td>{{college.university.deadline.round1}}</td>
+        <td>{{college.university.ielts}}</td>
+        <td>{{college.university.gre}}</td>
+        <td></td>
+        <td>
+            {% if !userData._admitted %}
+              {% if college.status=="Declined" %}
+                You have Declined
+                <a href="/users/undodecline/dubai/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                    <button class="btn btn-default btn-sm">Undo Decline</button>
+                </a>
+              {% else %}
+            <a href="/users/declineshortlist/dubai/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                <button class="btn btn-default btn-sm">Decline</button>
+            </a>
+              {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% for college in userData.malaysiaShortlists %}
+    <tr>
+        <td><a target="_blank"
+               href="/users/shortlist/malaysia/{{userData._id.toString()}}">{{college.university.university}}</a>
+        </td>
+        <td>{{college.university.coursename }}</td>
+        <td>{{college.university.state }}</td>
+        <td>{{college.university.city}}</td>
+        <td> malaysia</td>
+        <td>{{college.university.deadline.round1}}</td>
+        <td>{{college.university.ielts}}</td>
+        <td>{{college.university.gre}}</td>
+        <td></td>
+        <td>
+            {% if !userData._admitted %}
+              {% if college.status=="Declined" %}
+                You have Declined
+                <a href="/users/undodecline/malaysia/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                    <button class="btn btn-default btn-sm">Undo Decline</button>
+                </a>
+              {% else %}
+            <a href="/users/declineshortlist/malaysia/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                <button class="btn btn-default btn-sm">Decline</button>
+            </a>
+              {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% for college in userData.singaporeShortlists %}
+    <tr>
+        <td><a target="_blank"
+               href="/users/shortlist/singapore/{{userData._id.toString()}}">{{college.university.university}}</a>
+        </td>
+        <td>{{college.university.coursename }}</td>
+        <td>{{college.university.state }}</td>
+        <td>{{college.university.city}}</td>
+        <td> singapore</td>
+        <td>{{college.university.deadline.round1}}</td>
+        <td>{{college.university.ielts}}</td>
+        <td>{{college.university.gre}}</td>
+        <td></td>
+        <td>
+            {% if !userData._admitted %}
+              {% if college.status=="Declined" %}
+                You have Declined
+                <a href="/users/undodecline/singapore/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                    <button class="btn btn-default btn-sm">Undo Decline</button>
+                </a>
+              {% else %}
+            <a href="/users/declineshortlist/singapore/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                <button class="btn btn-default btn-sm">Decline</button>
+            </a>
+              {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% for college in userData.netherlandsShortlists %}
+    <tr>
+        <td><a target="_blank"
+               href="/users/shortlist/netherlands/{{userData._id.toString()}}">{{college.university.university}}</a>
+        </td>
+        <td>{{college.university.coursename }}</td>
+        <td>{{college.university.state }}</td>
+        <td>{{college.university.city}}</td>
+        <td> netherlands</td>
+        <td>{{college.university.deadline.round1}}</td>
+        <td>{{college.university.ielts}}</td>
+        <td>{{college.university.gre}}</td>
+        <td></td>
+        <td>
+            {% if !userData._admitted %}
+              {% if college.status=="Declined" %}
+                You have Declined
+                <a href="/users/undodecline/netherlands/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                    <button class="btn btn-default btn-sm">Undo Decline</button>
+                </a>
+              {% else %}
+            <a href="/users/declineshortlist/netherlands/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                <button class="btn btn-default btn-sm">Decline</button>
+            </a>
+              {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% for college in userData.switzerlandShortlists %}
+    <tr>
+        <td><a target="_blank"
+               href="/users/shortlist/switzerland/{{userData._id.toString()}}">{{college.university.university}}</a>
+        </td>
+        <td>{{college.university.coursename }}</td>
+        <td>{{college.university.state }}</td>
+        <td>{{college.university.city}}</td>
+        <td> switzerland</td>
+        <td>{{college.university.deadline.round1}}</td>
+        <td>{{college.university.ielts}}</td>
+        <td>{{college.university.gre}}</td>
+        <td></td>
+        <td>
+            {% if !userData._admitted %}
+              {% if college.status=="Declined" %}
+                You have Declined
+                <a href="/users/undodecline/switzerland/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                    <button class="btn btn-default btn-sm">Undo Decline</button>
+                </a>
+              {% else %}
+            <a href="/users/declineshortlist/switzerland/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                <button class="btn btn-default btn-sm">Decline</button>
+            </a>
+              {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% for college in userData.franceShortlists %}
+    <tr>
+        <td><a target="_blank"
+               href="/users/shortlist/france/{{userData._id.toString()}}">{{college.university.university}}</a>
+        </td>
+        <td>{{college.university.course }}</td>
+        <td>{{college.university.state }}</td>
+        <td>{{college.university.city}}</td>
+        <td> france</td>
+        <td>{{college.university.deadline.round1}}</td>
+        <td>{{college.university.ielts}}</td>
+        <td>{{college.university.gre}}</td>
+        <td></td>
+        <td>
+            {% if !userData._admitted %}
+              {% if college.status=="Declined" %}
+                You have Declined
+                <a href="/users/undodecline/france/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                    <button class="btn btn-default btn-sm">Undo Decline</button>
+                </a>
+              {% else %}
+            <a href="/users/declineshortlist/france/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                <button class="btn btn-default btn-sm">Decline</button>
+            </a>
+              {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    {% for college in userData.italyShortlists %}
+    <tr>
+        <td><a target="_blank"
+               href="/users/shortlist/italy/{{userData._id.toString()}}">{{college.university.university}}</a>
+        </td>
+        <td>{{college.university.course }}</td>
+        <td>{{college.university.state }}</td>
+        <td>{{college.university.city}}</td>
+        <td> italy</td>
+        <td>{{college.university.deadline.round1}}</td>
+        <td>{{college.university.ielts}}</td>
+        <td>{{college.university.gre}}</td>
+        <td></td>
+        <td>
+            {% if !userData._admitted %}
+              {% if college.status=="Declined" %}
+                You have Declined
+                <a href="/users/undodecline/italy/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                    <button class="btn btn-default btn-sm">Undo Decline</button>
+                </a>
+              {% else %}
+            <a href="/users/declineshortlist/italy/{{userData._id.toString()}}/{{college.university._id.toString()}}">
+                <button class="btn btn-default btn-sm">Decline</button>
+            </a>
+              {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+<!-- Section: about -->
+
+<!--//End-login-form-->

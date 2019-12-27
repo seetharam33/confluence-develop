@@ -1,0 +1,147 @@
+{% extends 'navUniv.html' %}
+
+{% block title %}
+  {% parent %}
+  	Univeristy in Ireland
+{% endblock %}
+
+{% block customCSS %}
+ {% parent %}
+   <link href="css/style.css" rel='stylesheet' type='text/css' />
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+  	<div class="form">
+  		<form>
+  			<div class="row">
+  				{% if error.length > 0 %}
+  				<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							{{ error[0] }}
+						</div>
+				{% endif %}
+				{% if success.length > 0 %}
+  				<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							{{ success[0] }}
+						</div>
+				{% endif %}
+  				<div class="col-xs-12 col-sm-12 form-group">
+  				    <label for="university">University Name</label>
+  						<input class="form-control" required class="form-group" type="text" name="university" placeholder="University Name" {% if univData.university.length > 0 %} value="{{ univData.university }}" {% endif %}  />
+  				</div>
+  			</div>
+  			<div class="row">
+  				<div class="col-xs-12 form-group">
+  				<label for="usp">USP</label>
+  					<textarea class="form-control" name="usp" id="usp" rows="5" >{% if univData.usp.length > 0 %} {{ univData.usp }} {% endif %}  </textarea>
+  				</div>
+  			</div>
+  			<div class="row">
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="city">City</label>
+  						<input class="form-control" class="form-group" type="text" name="city" placeholder="City" {% if univData.city.length > 0 %} value="{{ univData.city }}" {% endif %}  />
+  					</div>
+  				</div>
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="region">Region</label>
+  						<input class="form-control" type="text" name="region" placeholder="Region" value="{{ univData.region }}"/>
+  					</div>
+  				</div>
+        </div>
+  			<div class="row">
+
+  				<div class="col-xs-12 col-sm-4 form-group">
+  					<div class="form-group">
+  					<label for="dept">Department</label>
+  						<input class="form-control" class="text" name="dept" placeholder="department" value="{{ univData.department }}"/>
+  					</div>
+  				</div>
+          <div class="col-xs-12 col-sm-4 form-group">
+  					<div class="form-group">
+  					<label for="fDeadline">Fall Deadline</label>
+  						<input class="form-control" type="text" value="{{univData.fDeadline}}" name="fDeadline" placeholder="DD/MM/YYYY"/>
+  					</div>
+  				</div>
+  				<div class="col-xs-12 col-sm-4 form-group">
+  					<div class="form-group">
+  					<label for="deptDeadline">Sprinng Deadline</label>
+  						<input class="form-control" type="text" name="deadline" placeholder="Deadline" {% if univData.deadline.length > 0 %} value="{{univData.deadline}}" {% endif %}  />
+  					</div>
+  				</div>
+  			</div>
+  			<div class="row">
+
+  				<div class="col-xs-12 col-sm-4 form-group">
+  					<div class="form-group">
+  					<label for="course">Course Name</label>
+  						<input class="form-control" type="text" name="course" placeholder="course" {% if univData.coursename.length > 0 %} value="{{ univData.coursename }}" {% endif %}  />
+  					</div>
+  				</div>
+          <div class="col-xs-12 col-sm-4 form-group">
+  					<div class="form-group">
+  					<label for="programLink">Program Link</label>
+  						<input class="form-control" type="text" value="{{univData.programLink}}" name="programLink" placeholder="Program Link"/>
+  					</div>
+  				</div>
+  				<div class="col-xs-12 col-sm-4 form-group">
+  					<div class="form-group">
+  					<label for="intake">Total Intake</label>
+  						<input class="form-control" type="text" name="intake" placeholder="Total Intake" {% if univData.intake> 0 %} value="{{ univData.intake }}" {% endif %}  />
+  					</div>
+  				</div>
+  			</div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="type">Course Type</label>
+              <select class="form-control" type="text" name="type"/>
+                <option {%if univData.type=="pgdiploma"%}selected {%endif%} value="pgdiploma">PG Diploma</option>
+                <option {%if univData.type=="diploma"%}selected {%endif%} value="diploma">Diploma</option>
+                <option {%if univData.type=="bachelors"%}selected {%endif%} value="bachelors">Bachelors</option>
+                <option {%if univData.type=="masters"%}selected {%endif%} value="masters">Masters</option>
+                <option {%if univData.type=="mba"%}selected {%endif%} value="mba">MBA</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="applicationFees">Application Fee</label>
+  						<input class="form-control" type="text" value="{{univData.applicationFee}}" name="applicationFee" placeholder="Application Fee"/>
+  					</div>
+  				</div>
+        </div>
+  			<div class="row">
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="appFee">Intial Visa Fee</label>
+  						<input class="form-control" type="text" name="visaFee" placeholder="Initial Visa Fee" value="{{ univData.casFee }}"/>
+  					</div>
+  				</div>
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="annualFee">Annual Fee</label>
+  						<input class="form-control" type="text" name="annualFee" {% if univData.annualFee > 0 %} value="{{ univData.annualFee }}" {% endif %} />
+  					</div>
+  				</div>
+  			</div>
+  			<div class="row">
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="scholarhsipAmt">Scholarship Amount</label>
+  						<input class="form-control" class="form-group" type="text" name="scholarshipAmt" placeholder="Scholarship Amount" {% if univData.scholarship.amount > 0 %} value="{{ univData.scholarship.amount }}" {% endif %}  />
+  					</div>
+  				</div>
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="link">Link to Scholarhsip Application</label>
+  						<input class="form-control" type="text" name="link" placeholder="Application Link" value="{{ univData.scholarship.url }}" />
+  					</div>
+  				</div>
+  			</div>
+  		</form>
+  	</div>
+{% endblock %}

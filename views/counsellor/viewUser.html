@@ -1,0 +1,355 @@
+{% extends 'navUser.html' %}
+
+{% block customCSS %}
+{% parent %}
+<link href="css/user.css" rel='stylesheet' type='text/css'/>
+<link href="css/style.css" rel='stylesheet' type='text/css'/>
+{% endblock %}
+
+{% block personalclass %}
+{% parent %}
+class="active"
+{% endblock %}
+
+{% block title %}
+{% parent %}
+Personal Details
+{% endblock %}
+
+{% block content %}
+{% parent %}
+<script>
+    function get_country() {
+        var x = document.getElementById("coun").selectedIndex;
+        var action = document.getElementById("coun").options[x].text;
+        if (action=="UK") {
+            var ielts = document.getElementById("ielts").value;
+            var gre = document.getElementById("gre").value;
+            document.getElementById("main_form").method="GET";
+            document.getElementById("main_form").action = "/counsellor/viewUk?gre="+gre+"?ielts="+ielts;
+            document.getElementById("main_form").submit();
+        }
+        else if (action=="USA") {
+            document.getElementById("main_form").method="GET";
+            document.getElementById("main_form").action = "/counsellor/viewUsa";
+            document.getElementById("main_form").submit();
+        }
+    };
+    function saveChanges() {
+        document.getElementById("main_form").method="POST";
+        document.getElementById("main_form").action = "/counsellor/userDetails/{{userData._id.toString()}}";
+        document.getElementById("main_form").submit();
+    };
+</script>
+<div class="form container-fluid">
+    <form name="mainform" id="main_form" method="POST">
+        {% if success.length>0 %}
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {{success[0]}}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if error.length>0 %}
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {{error[0]}}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="details">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" name="first_name" class="form-control" value="{{ userData.first_name }}"/>
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" name="last_name" class="form-control" value="{{ userData.last_name }}"/>
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="studentId">studentId</label>
+                    <input type="text" name="studentId" class="form-control" value="{{ userData.studentId }}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <h6>Mobile</h6>
+                    <div class="col-xs-3 col-sm-2 form-group" style="padding-left: 0;margin-left: 0;">
+                        <label for="isd">ISD</label>
+                        <input name="isd" type="text" class="form-control" value="{{ userData.phone.isd }}"/>
+                    </div>
+                    <div class="col-xs-9 col-sm-10 form group"
+                         style="padding-left: 0;margin-left: 0;margin-right: 0;padding-right: 0;">
+                        <label for="mobile">Mobile Number</label>
+                        <input class="form-control" name="mobile" type="text" value="{{ userData.phone.mobile }}"/>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <h6>Landline</h6>
+                    <div class="col-xs-2 col-sm-4 form-group" style="padding-left: 0;margin-left: 0;">
+                        <label for="std">STD</label>
+                        <input name="std" type="text" class="form-control" value="{{ userData.phone.std }}"/>
+                    </div>
+                    <div class="col-xs-10 col-sm-8 form group"
+                         style="padding-left: 0;margin-left: 0;margin-right: 0;padding-right: 0;">
+                        <label for="landline">Landline Number</label>
+                        <input class="form-control" name="landline" type="text" value="{{ userData.phone.landline }}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 form-group">
+                    <label for="email">Email Id</label>
+                    <input type="email" class="form-control" name="email" value="{{ userData.email }}"/>
+                </div>
+                <div class="col-xs-12 col-sm-6 form-group">
+                    <label for="altEmail">Alternate Email Id</label>
+                    <input type="email" class="form-control" name="altEmail" value="{{ userData.altEmail }}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" class="form-control" placeholder="DD/MM/YYYY" name="dob" value="{{ userData.dob.toISOString().substring(0,10) }}"/>
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="gender">Gender</label>
+                    <select name="gender" class="form-control" value="{{ userData.gender }}">
+                        <option {% if userData.gender=="Male" %} selected {%endif%} value="Male">Male</option>
+                        <option {% if userData.gender=="Female" %} selected {%endif%} value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="maritial">Maritial Status</label>
+                    <select name="maritial" id="maritial" class="form-control" value="{{ userData.maritial }}">
+                        <option value="Married">Married</option>
+                        <option value="Single">Single</option>
+                        <option value="Divorced">Divorced</option>
+                        <option value="Engaged">Engaged</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="fb">Facebook Profile</label>
+                    <input type="text" class="form-control" name="fb" value="{{ userData.fb}}"/>
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="twitter">Twitter Profile</label>
+                    <input type="text" class="form-control" name="twitter" value="{{ userData.twitter }}"/>
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="linkedIn">LinkedIn Profile</label>
+                    <input type="text" class="form-control" name="linkedIn" value="{{ userData.linkedIn}}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 form-group">
+                    <label for="skype">Skype Profile</label>
+                    <input type="text" class="form-control" name="skype" value="{{ userData.skype }}"/>
+                </div>
+                <div class="col-xs-12 col-sm-6 form-group">
+                    <label for="blog">Blog</label>
+                    <input type="text" class="form-control" name="blog" value="{{ userData.blog}}"/>
+                </div>
+            </div>
+            <p> Guardian Details </p>
+            <div class="row">
+                <div class="col-xs-6 ">
+                    <label for="guardianName">Guardian Name</label>
+                    <input class="form-control" type="text" name="guardianName" value="{{ userData.guardian.name}}"/>
+                </div>
+                <div class="col-xs-6 ">
+                    <label for="guardianOccupation">Occupation</label>
+                    <input class="form-control" type="text" name="occupation"
+                           value="{{ userData.guardian.occupation}}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 ">
+                    <label for="guardianNumber">Guardian Number</label>
+                    <input class="form-control" type="number" name="guardianNumber"
+                           value="{{ userData.guardian.number}}"/>
+                </div>
+                <div class="col-xs-6 ">
+                    <label for="guardianrelation">Relation</label>
+                    <input class="form-control" type="text" name="relation" value="{{ userData.guardian.relation}}"/>
+                </div>
+            </div>
+            <br>
+            <p>Address</p>
+            <div class="row">
+                <div class="col-xs-12">
+                    <label for="line1">House / Street Name</label>
+                    <input class="form-control" type="text" name="line1" value="{{ userData.address.line1}}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <label for="line2">Locality</label>
+                    <input class="form-control" onFocus="geolocate()" id="autocomplete" type="text" name="line2"
+                           value="{{ userData.address.line2}}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <label for="city">City</label>
+                    <input class="form-control" id="locality" type="text" name="city" value="{{userData.address.city}}">
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <label for="state">State</label>
+                    <input class="form-control" id="administrative_area_level_1" type="text" name="state"
+                           value="{{userData.address.state}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <label for="country">Country</label>
+                    <input class="form-control" id="country" type="text" name="country"
+                           value="{{userData.address.country}}">
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <label for="pincode">PIN</label>
+                    <input class="form-control" type="text" id="postal_code" name="pincode"
+                           value="{{userData.address.pin }}">
+                </div>
+            </div>
+            <br>
+            <p>Work Experience</p>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <label for="latestEmp">Company Name</label>
+                    <input class="form-control" type="text" name="latestEmp" value="{{ userData.workExp.latestEmp}}"/>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <label for="designation">Designation</label>
+                    <input class="form-control" id="autocomplete" type="text" name="designation"
+                           value="{{ userData.workExp.designation}}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <label for="exp">Years of Experience</label>
+                    <input class="form-control" id="exp" type="text" name="exp" value="{{ userData.workExp.exp}}"/>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <label for="coreFunction">Core Functions</label>
+                    <input class="form-control" id="coreFunction" type="text" name="coreFunction"
+                           value="{{ userData.workExp.coreFunction}}"/>
+                </div>
+            </div>
+            <br>
+            <p>Education Profile</p>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="tenthpercent">Tenth Percentage</label>
+                    <input type="text" class="form-control" name="tenthpercent" value="{{ userData.tenth.marks }}"/>
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="interpercent">Intermediate Percentage</label>
+                    <input type="text" class="form-control" name="interpercent" value="{{ userData.twelfth.marks }}"/>
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="gradpercent">Graduation Percentage</label>
+                    <input type="text" class="form-control" name="gradpercent" value="{{ userData.grad.marks }}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="pgpercent">Post Graduation Percentage</label>
+                    <input type="text" class="form-control" name="pgpercent" value="{{ userData.postgrad.marks }}"/>
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="gradbacklogs">Graduation Backlogs</label>
+                    <input type="text" class="form-control" name="gradbacklogs" value="{{ userData.grad.backlogs}}"/>
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="pgbacklogs">Post Graduation Backlogs</label>
+                    <input type="text" class="form-control" name="pgbacklogs" value="{{ userData.postgrad.backlogs }}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="gre">GRE Score</label>
+                    <input type="text" class="form-control" name="gre" id="gre" value="{{ userData.scores.gre}}"/>
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="gmat">GMAT Score</label>
+                    <input type="text" class="form-control" name="gmat" id="gmat" value="{{ userData.scores.gmat }}"/>
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="ielts">IELTS Score</label>
+                    <input type="text" class="form-control" name="ielts" id="ielts" value="{{ userData.scores.ielts}}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="sat">SAT Score</label>
+                    <input type="text" class="form-control" name="sat" id="sat" value="{{ userData.scores.sat }}"/>
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="toefl">TOEFL Score</label>
+                    <input type="text" class="form-control" name="toefl" id="toefl" value="{{ userData.scores.toefl}}"/>
+                </div>
+                <div class="col-xs-12 col-sm-4 form-group">
+                    <label for="pte">PTE Score</label>
+                    <input type="text" class="form-control" name="pte" id="pte" value="{{ userData.scores.pte}}"/>
+                </div>
+            </div>
+            <p>Lead Information</p>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <label for="leadSource">Lead Source</label>
+                    <input class="form-control" type="text" name="leadSource" value="{{ userData.lead.Source}}"/>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <label for="description">Description</label>
+                    <input class="form-control" type="text" name="description" value="{{ userData.description}}"/>
+                </div>
+            </div>
+            <br>
+            
+                <p>ShortList</p>
+                <div class="row">
+            <div class="col-xs-12 col-sm-6 form-group">
+                <label for="applying_Country" id="country">Country Applying For</label>
+                <select name="applyingCountry" id="coun" class="form-control">
+                    <option selected value=""> --- Country Applying For ---</option>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Germany">Germany</option>
+                    <option value="France">France</option>
+                    <option value="UK">UK</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Dubai">Dubai</option>
+                    <option value="Malayisa">Malayisa</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="Switzerland">Switzerland</option>
+                    <option value="Ireland">Ireland</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Australia">Australia</option>
+                    <option value="New Zealand">New Zealand</option>
+                </select>
+            </div>
+        </div>
+            <br>
+            
+            <button class="btn btn-default btn-lg center-block" value="submit" onclick="saveChanges()">Save Changes</button>
+           <br> <button class="btn btn-default btn-lg center-block"  value="Submit" onclick="get_country()">Short List</button>
+        </div>
+    </form>
+    <script>
+        document.getElementById("maritial").value = "{{ userData.maritial }}";
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_VvfAe0dj0Gqr8ffE3JfH0ID8cncbbKI&signed_in=true&libraries=places&callback=initAutocomplete"
+            async defer></script>
+
+    {% endblock%}

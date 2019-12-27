@@ -1,0 +1,83 @@
+{% extends 'nav.html' %}
+
+{% block customCSS %}
+{% parent %}
+<link href="css/style.css" rel='stylesheet' type='text/css'/>
+{% endblock %}
+
+{% block title %}
+{% parent %}
+Reports
+{% endblock %}
+
+{% block reportclass %}class="active"{% endblock %}
+
+{% block content %}
+{% parent %}
+<div class="row clearfix">
+    <div class="col-xs-12 col-sm-4">
+        <a href="/admin/reports/w">
+            <button class="btn btn-default btn-lg center-block">Weekly Stats</button>
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <a href="/admin/reports/m">
+            <button class="btn btn-default btn-lg center-block">Monthly Stats</button>
+        </a>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <a href="/admin/reports/y">
+            <button class="btn btn-default btn-lg center-block">Yearly Stats</button>
+        </a>
+    </div>
+</div>
+<hr />
+<div class="row clearfix">
+    <div class="col-xs-12 col-sm-12">
+        <h1>Statistics of the {{dataTime}}</h1>
+        <div class="jumbotron">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Counsellor</th>
+                        <th>Field</th>
+                        <th>Count</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for task in taskSummary%}
+                    <tr>
+                        <td>{{ task._id}} tasks</td>
+                        <td>{{task.count}}</td>
+                    </tr>
+                    {% endfor %}
+                    {% if taskSummary.length == 0 %}
+                    <tr>
+                        <td>Completed tasks</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Open tasks</td>
+                        <td>0</td>
+                    </tr>
+                    {% endif %}
+                    {% for lead in leadCount%}
+                    <tr>
+                        <td>Lead Count</td>
+                        <td>{{lead.leadCount}}</td>
+                    </tr>
+                    {% endfor %}
+                    {% for payment in paymentSummary%}
+                    <tr>
+                        <td> {% if payment._id %}Completed {% elseif !payment._id %}Pending {% endif %} Payments</td>
+                        <td>{{payment.revenue}} ({{payment.count}})</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'nav.html' %}
+{% block title %}Referral Code{% endblock %}
+{% block personal %}class="active"{% endblock %}
+{% block customCSS %}
+ {% parent %}
+{% endblock %}
+{% block content %}
+<h2> Your Referral Code is {{userData.referral_code}}</h2>
+<hr>
+<h2>Your Referred users</h2>
+<div class="details">
+    <table id="userData" class="table table-striped table-bordered" width="100%">
+        <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+        </thead>
+        <tbody>
+          {%for user in referredUsers%}
+          <tr>
+          <td>{{ user.first_name }} {{ user.last_name }}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.phone.mobile}}</td>
+          </tr>
+          {%endfor%}
+        </tbody>
+    </table>
+</div>
+{% endblock%}

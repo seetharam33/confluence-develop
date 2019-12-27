@@ -1,0 +1,37 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Associate Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Associate login for confluence system" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //For-Mobile-Apps -->
+<!-- Style --> <link rel="stylesheet" href="css/assologin.css" type="text/css" media="all" />
+</head>
+<body>
+<div class="container">
+<h1><img src="images/confluence.png" width="50%"></h1>
+	<div class="signin">
+     	<form action="/hub/reset/{{userData.resetPasswordToken}}" method="POST">
+	      	<input type="password" name="password" placeholder="Enter your new Password" class="pass"/>
+	      	<input type="password" name="newpassword" placeholder="Re-enter your Password" class="pass" required="" />
+	      				{% if success.length>0 %}
+						<p style="color: #66CD00;">{{success[0]}}</p>
+						{% endif %}	
+	      				{% if error.length>0 %}
+						<p style="color: white;">{{error[0]}}</p>
+						{% endif %}
+          	<input type="submit" value="Submit" />
+	 	</form>
+	</div>
+</div>
+</body>
+</html>

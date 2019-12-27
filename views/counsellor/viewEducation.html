@@ -1,0 +1,549 @@
+{% extends 'navUser.html' %}
+
+{% block customCSS %}
+ {% parent %}
+   <link href="css/user.css" rel='stylesheet' type='text/css' />
+   <link href="css/style.css" rel='stylesheet' type='text/css' />
+{% endblock %}
+
+{% block title %}
+  {% parent %}
+  	Educational Details
+ {% endblock %}
+
+{% block educationclass %}
+	{% parent %}
+		class="active"
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+  <div class="form container-fluid">
+  	<form action ="/counsellor/educationDetails/{{ userData._id.toString() }}" method="POST">
+      {% if success.length>0 %}
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							{{success[0]}}
+						</div>
+					</div>
+				</div>
+				{% endif %}
+				{% if error.length>0 %}
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							{{error[0]}}
+						</div>
+					</div>
+				</div>
+				{% endif %}
+	  	<div class="tenth">
+	  		<h3>Class 10th</h3>
+	  		<div class="row">
+	  			<div class="col-xs-12 col-sm-6 form-group">
+		  			<label for="schoolTenth">School Name</label>
+		  			<input type="text" name="schoolTenth" value="{{ userData.tenth.school_name}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-6 form-group">
+		  			<div class="row">
+				  		<div class="col-xs-12 col-sm-6 form-group">
+				  			<label for="cityTenth">City</label>
+				  			<input type="text" name="cityTenth" value="{{ userData.tenth.city}}" class="
+				  			form-control"/>
+				  		</div><div class="col-xs-12 col-sm-6 form-group">
+				  			<label for="stateTenth">State</label>
+				  			<input type="text" name="stateTenth" value="{{ userData.tenth.state}}" class="
+				  			form-control"/>
+				  		</div>
+		  			</div>
+		  		</div>
+		  	</div>
+
+		  	<div class="row">
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="yearTenth">Year</label>
+		  			<input type="text" name="yearTenth" value="{{ userData.tenth.year}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="boardTenth">Board</label>
+		  			<input type="text" name="boardTenth" value="{{ userData.tenth.board}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="medTenth">Medium</label>
+		  			<input type="text" name="medTenth" value="{{ userData.tenth.medium}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="marksTenth">Percentage</label>
+		  			<input type="text" name="marksTenth" value="{{ userData.tenth.marks}}" class="
+		  			form-control"/>
+		  		</div>
+		  	</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12"><h6>Contact 1</h6></div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="tenthContact1Name" value="{{ userData.tenth.contact1Name}}" class="
+		  			form-control" placeholder="Contact Name"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="tenthContact1Designation" value="{{ userData.tenth.contact1Designation}}" class="
+		  			form-control" placeholder="Contact Designation"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="number" name="tenthContact1Number" value="{{ userData.tenth.contact1Number}}" class="
+		  			form-control" placeholder="Contact Number"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="email" name="tenthContact1Email" value="{{ userData.tenth.contact1Email}}" class="
+		  			form-control" placeholder="Contact Email"/>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12"><h6>Contact 2</h6></div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="tenthContact2Name" value="{{ userData.tenth.contact2Name}}" class="
+		  			form-control" placeholder="Contact Name"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="tenthContact2Designation" value="{{ userData.tenth.contact2Designation}}" class="
+		  			form-control" placeholder="Contact Designation"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="number" name="tenthContact2Number" value="{{ userData.tenth.contact2Number}}" class="
+		  			form-control" placeholder="Contact Number"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="email" name="tenthContact2Email" value="{{ userData.tenth.contact2Email}}" class="
+		  			form-control" placeholder="Contact Email"/>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12"><h6>Contact 3</h6></div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="tenthContact3Name" value="{{ userData.tenth.contact3Name}}" class="
+		  			form-control" placeholder="Contact Name"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="tenthContact3Designation" value="{{ userData.tenth.contact3Designation}}" class="
+		  			form-control" placeholder="Contact Designation"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="number" name="tenthContact3Number" value="{{ userData.tenth.contact3Number}}" class="
+		  			form-control" placeholder="Contact Number"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="email" name="tenthContact3Email" value="{{ userData.tenth.contact3Email}}" class="
+		  			form-control" placeholder="Contact Email"/>
+				</div>
+			</div>
+	  	</div>
+	  	<div class="twelfth">
+	  		<h3>Class 12th</h3>
+	  		<div class="row">
+	  			<div class="col-xs-12 col-sm-6 form-group">
+		  			<label for="schooltwelfth">School Name</label>
+		  			<input type="text" name="schooltwelfth" value="{{ userData.twelfth.school_name}}" class="form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-6 form-group">
+		  			<div class="row">
+				  		<div class="col-xs-12 col-sm-6 form-group">
+				  			<label for="citytwelfth">City</label>
+				  			<input type="text" name="citytwelfth" value="{{ userData.twelfth.city}}" class="
+				  			form-control"/>
+				  		</div><div class="col-xs-12 col-sm-6 form-group">
+				  			<label for="statetwelfth">State</label>
+				  			<input type="text" name="statetwelfth" value="{{ userData.twelfth.state}}" class="
+				  			form-control"/>
+				  		</div>
+		  			</div>
+		  		</div>
+		  	</div>
+
+		  	<div class="row">
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="yeartwelfth">Year</label>
+		  			<input type="text" name="yeartwelfth" value="{{ userData.twelfth.year}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="boardtwelfth">Board</label>
+		  			<input type="text" name="boardtwelfth" value="{{ userData.twelfth.board}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="medtwelfth">Medium</label>
+		  			<input type="text" name="medtwelfth" value="{{ userData.twelfth.medium}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="markstwelfth">Percentage</label>
+		  			<input type="text" name="markstwelfth" value="{{ userData.twelfth.marks}}" class="
+		  			form-control"/>
+		  		</div>
+		  	</div>
+		  	<div class="row">
+		  		<div class="col-xs-12 col-sm-6 form-group">
+		  			<label for="specializationtwelfth">Specialization</label>
+		  			<input type="text" name="specializationtwelfth" value="{{ userData.twelfth.specialization}}" class="
+		  			form-control"/>
+		  		</div><div class="col-xs-12 col-sm-6 form-group">
+		  			<label for="modewelfth">Mode of Study</label>
+		  			<input type="text" name="modetwelfth" value="{{ userData.twelfth.mode}}" class="
+		  			form-control"/>
+		  		</div>
+		  	</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12"><h6>Contact 1</h6></div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="twelfthContact1Name" value="{{ userData.twelfth.contact1Name}}" class="
+		  			form-control" placeholder="Contact Name"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="twelfthContact1Designation" value="{{ userData.twelfth.contact1Designation}}" class="
+		  			form-control" placeholder="Contact Designation"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="number" name="twelfthContact1Number" value="{{ userData.twelfth.contact1Number}}" class="
+		  			form-control" placeholder="Contact Number"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="email" name="twelfthContact1Email" value="{{ userData.twelfth.contact1Email}}" class="
+		  			form-control" placeholder="Contact Email"/>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12"><h6>Contact 2</h6></div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="twelfthContact2Name" value="{{ userData.twelfth.contact2Name}}" class="
+		  			form-control" placeholder="Contact Name"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="twelfthContact2Designation" value="{{ userData.twelfth.contact2Designation}}" class="
+		  			form-control" placeholder="Contact Designation"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="number" name="twelfthContact2Number" value="{{ userData.twelfth.contact2Number}}" class="
+		  			form-control" placeholder="Contact Number"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="email" name="twelfthContact2Email" value="{{ userData.twelfth.contact2Email}}" class="
+		  			form-control" placeholder="Contact Email"/>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12"><h6>Contact 3</h6></div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="twelfthContact3Name" value="{{ userData.twelfth.contact3Name}}" class="
+		  			form-control" placeholder="Contact Name"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="twelfthContact3Designation" value="{{ userData.twelfth.contact3Designation}}" class="
+		  			form-control" placeholder="Contact Designation"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="number" name="twelfthContact3Number" value="{{ userData.twelfth.contact3Number}}" class="
+		  			form-control" placeholder="Contact Number"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="email" name="twelfthContact3Email" value="{{ userData.twelfth.contact3Email}}" class="
+		  			form-control" placeholder="Contact Email"/>
+				</div>
+			</div>
+	  	</div>
+	  	<div class="Grad">
+	  		<h3>Graduation</h3>
+	  		<div class="row">
+	  			<div class="col-xs-12 col-sm-6 form-group">
+		  			<label for="schoolGrad">School Name</label>
+		  			<input type="text" name="schoolGrad" value="{{ userData.grad.school_name}}" class="form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-6 form-group">
+		  			<div class="row">
+				  		<div class="col-xs-12 col-sm-6 form-group">
+				  			<label for="cityGrad">City</label>
+				  			<input type="text" name="cityGrad" value="{{ userData.grad.city}}" class="
+				  			form-control"/>
+				  		</div><div class="col-xs-12 col-sm-6 form-group">
+				  			<label for="stateGrad">State</label>
+				  			<input type="text" name="stateGrad" value="{{ userData.grad.state}}" class="
+				  			form-control"/>
+				  		</div>
+		  			</div>
+		  		</div>
+		  	</div>
+
+		  	<div class="row">
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="yearGrad">Year</label>
+		  			<input type="text" name="yearGrad" value="{{ userData.grad.year}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="boardGrad">Board</label>
+		  			<input type="text" name="boardGrad" value="{{ userData.grad.board}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="medGrad">Medium</label>
+		  			<input type="text" name="medGrad" value="{{ userData.grad.medium}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="marksGrad">Percentage</label>
+		  			<input type="text" name="marksGrad" value="{{ userData.grad.marks}}" class="
+		  			form-control"/>
+		  		</div>
+		  	</div>
+		  	<div class="row">
+		  		<div class="col-xs-12 col-sm-4 form-group">
+		  			<label for="specializationGrad">Specialization</label>
+		  			<input type="text" name="specializationGrad" value="{{ userData.grad.specialization }}" class="
+		  			form-control"/>
+		  		</div><div class="col-xs-12 col-sm-4 form-group">
+		  			<label for="modewelfth">Mode of Study</label>
+		  			<input type="text" name="modeGrad" value="{{ userData.grad.mode}}" class="
+		  			form-control"/>
+		  		</div>
+          <div class="col-xs-12 col-sm-4 form-group">
+		  			<label for="backlogsGrad">Backlogs</label>
+		  			<input type="text" name="backlogsGrad" value="{{ userData.grad.backlogs}}" class="
+		  			form-control"/>
+		  		</div>
+		  	</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12"><h6>Contact 1</h6></div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="gradContact1Name" value="{{ userData.grad.contact1Name}}" class="
+		  			form-control" placeholder="Contact Name"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="gradContact1Designation" value="{{ userData.grad.contact1Designation}}" class="
+		  			form-control" placeholder="Contact Designation"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="number" name="gradContact1Number" value="{{ userData.grad.contact1Number}}" class="
+		  			form-control" placeholder="Contact Number"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="email" name="gradContact1Email" value="{{ userData.grad.contact1Email}}" class="
+		  			form-control" placeholder="Contact Email"/>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12"><h6>Contact 2</h6></div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="gradContact2Name" value="{{ userData.grad.contact2Name}}" class="
+		  			form-control" placeholder="Contact Name"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="gradContact2Designation" value="{{ userData.grad.contact2Designation}}" class="
+		  			form-control" placeholder="Contact Designation"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="number" name="gradContact2Number" value="{{ userData.grad.contact2Number}}" class="
+		  			form-control" placeholder="Contact Number"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="email" name="gradContact2Email" value="{{ userData.grad.contact2Email}}" class="
+		  			form-control" placeholder="Contact Email"/>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12"><h6>Contact 3</h6></div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="gradContact3Name" value="{{ userData.grad.contact3Name}}" class="
+		  			form-control" placeholder="Contact Name"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="gradContact3Designation" value="{{ userData.grad.contact3Designation}}" class="
+		  			form-control" placeholder="Contact Designation"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="number" name="gradContact3Number" value="{{ userData.grad.contact3Number}}" class="
+		  			form-control" placeholder="Contact Number"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="email" name="gradContact3Email" value="{{ userData.grad.contact3Email}}" class="
+		  			form-control" placeholder="Contact Email"/>
+				</div>
+			</div>
+
+	  	</div>
+	  	<div class="Postgrad">
+	  		<h3>Post Graduation</h3>
+	  		<div class="row">
+	  			<div class="col-xs-12 col-sm-6 form-group">
+		  			<label for="schoolPostgrad">School Name</label>
+		  			<input type="text" name="schoolPostgrad" value="{{ userData.postgrad.school_name}}" class="form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-6 form-group">
+		  			<div class="row">
+				  		<div class="col-xs-12 col-sm-6 form-group">
+				  			<label for="cityPostgrad">City</label>
+				  			<input type="text" name="cityPostgrad" value="{{ userData.postgrad.city}}" class="
+				  			form-control"/>
+				  		</div><div class="col-xs-12 col-sm-6 form-group">
+				  			<label for="statePostgrad">State</label>
+				  			<input type="text" name="statePostgrad" value="{{ userData.postgrad.state}}" class="
+				  			form-control"/>
+				  		</div>
+		  			</div>
+		  		</div>
+		  	</div>
+
+		  	<div class="row">
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="yearPostgrad">Year</label>
+		  			<input type="text" name="yearPostgrad" value="{{ userData.postgrad.year}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="boardPostgrad">Board</label>
+		  			<input type="text" name="boardPostgrad" value="{{ userData.postgrad.board}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="medPostgrad">Medium</label>
+		  			<input type="text" name="medPostgrad" value="{{ userData.postgrad.medium}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-3 form-group">
+		  			<label for="marksPostgrad">Percentage</label>
+		  			<input type="text" name="marksPostgrad" value="{{ userData.postgrad.marks}}" class="
+		  			form-control"/>
+		  		</div>
+		  	</div>
+		  	<div class="row">
+		  		<div class="col-xs-12 col-sm-4 form-group">
+		  			<label for="specializationPostgrad">Specialization</label>
+		  			<input type="text" name="specializationPostgrad" value="{{ userData.postgrad.specialization}}" class="
+		  			form-control"/>
+		  		</div>
+          <div class="col-xs-12 col-sm-4 form-group">
+		  			<label for="modewelfth">Mode of Study</label>
+		  			<input type="text" name="modePostgrad" value="{{ userData.postgrad.mode}}" class="
+		  			form-control"/>
+		  		</div>
+          <div class="col-xs-12 col-sm-4 form-group">
+		  			<label for="backlogsPG">Backlogs</label>
+		  			<input type="text" name="backlogsPG" value="{{ userData.postgrad.backlogs}}" class="
+		  			form-control"/>
+		  		</div>
+		  	</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12"><h6>Contact 1</h6></div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="postgradContact1Name" value="{{ userData.postgrad.contact1Name}}" class="
+		  			form-control" placeholder="Contact Name"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="postgradContact1Designation" value="{{ userData.postgrad.contact1Designation}}" class="
+		  			form-control" placeholder="Contact Designation"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="number" name="postgradContact1Number" value="{{ userData.postgrad.contact1Number}}" class="
+		  			form-control" placeholder="Contact Number"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="email" name="postgradContact1Email" value="{{ userData.postgrad.contact1Email}}" class="
+		  			form-control" placeholder="Contact Email"/>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12"><h6>Contact 2</h6></div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="postgradContact2Name" value="{{ userData.postgrad.contact2Name}}" class="
+		  			form-control" placeholder="Contact Name"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="postgradContact2Designation" value="{{ userData.postgrad.contact2Designation}}" class="
+		  			form-control" placeholder="Contact Designation"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="number" name="postgradContact2Number" value="{{ userData.postgrad.contact2Number}}" class="
+		  			form-control" placeholder="Contact Number"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="email" name="postgradContact2Email" value="{{ userData.postgrad.contact2Email}}" class="
+		  			form-control" placeholder="Contact Email"/>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12"><h6>Contact 3</h6></div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="postgradContact3Name" value="{{ userData.postgrad.contact3Name}}" class="
+		  			form-control" placeholder="Contact Name"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="text" name="postgradContact3Designation" value="{{ userData.postgrad.contact3Designation}}" class="
+		  			form-control" placeholder="Contact Designation"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="number" name="postgradContact3Number" value="{{ userData.postgrad.contact3Number}}" class="
+		  			form-control" placeholder="Contact Number"/>
+				</div>
+				<div class="col-xs-12 col-sm-3 form-group">
+					<input type="email" name="postgradContact3Email" value="{{ userData.postgrad.contact3Email}}" class="
+		  			form-control" placeholder="Contact Email"/>
+				</div>
+			</div>
+
+	  	</div>
+	  	<div class="scores">
+	  		<h3>Scores</h3>
+	  		<div class="row">
+		  		<div class="col-xs-12 col-sm-4 form-group">
+		  			<label for="gre">GRE</label>
+		  			<input type="number" min="0" max="340" name="gre" value="{{ userData.scores.gre}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-4 form-group">
+		  			<label for="gmat">GMAT</label>
+		  			<input type="number" min="0" max="800" name="gmat" value="{{ userData.scores.gmat}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-4 form-group">
+		  			<label for="sat">SAT</label>
+		  			<input type="number" min="0" max="2400" name="sat" value="{{ userData.scores.sat}}" class="
+		  			form-control"/>
+		  		</div>
+		  	</div>
+		  	<div class="row">
+		  		<div class="col-xs-12 col-sm-4 form-group">
+		  			<label for="toefl">TOEFL</label>
+		  			<input type="number" min="0" max="120" name="toefl" value="{{ userData.scores.toefl}}" class="form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-4 form-group">
+		  			<label for="ielts">IELTS</label>
+		  			<input type="number" step="0.5" min="0" max="9" name="ielts" value="{{ userData.scores.ielts}}" class="
+		  			form-control"/>
+		  		</div>
+		  		<div class="col-xs-12 col-sm-4 form-group">
+		  			<label for="pte">PTE</label>
+		  			<input type="value" name="pte" min="0" max="90" value="{{ userData.scores.pte}}" class="
+		  			form-control"/>
+		  		</div>
+		  	</div>
+	  	</div>
+	  	<button class="btn btn-default btn-large" role="submit" type="submit">Update</button>
+  	</form>
+  </div>
+{% endblock %}

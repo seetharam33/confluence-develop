@@ -1,0 +1,129 @@
+{% extends 'navAssociate.html' %}
+
+{% block customCSS %}
+ {% parent %}
+   <link href="css/user.css" rel='stylesheet' type='text/css' />
+   <link href="css/style.css" rel='stylesheet' type='text/css' />
+{% endblock %}
+
+{% block associateclass %}
+	{% parent %}
+		class="active"
+{% endblock %}
+
+{% block title %}
+  {% parent %}
+  	Associate Details
+ {% endblock %}
+
+{% block content %}
+  {% parent %}
+	 <div class="form container-fluid">
+	  	<form action ="/counsellor/associateDetails/{{userData._id.toString()}}" method="POST">
+  			{% if success.length>0 %}
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							{{success[0]}}
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			{% if error.length>0 %}
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							{{error[0]}}
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			<div class="details">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 form-group">
+						<label for="first_name">First Name</label>
+						<input type="text" name="first_name" class="form-control" value="{{ userData.first_name }}"/>
+					</div>
+					<div class="col-xs-12 col-sm-6 form-group">
+						<label for="last_name">Last Name</label>
+						<input type="text" name="last_name" class="form-control" value="{{ userData.last_name }}"/>
+					</div>
+				</div>
+				<div class="row">
+					 <div class="col-xs-12 col-sm-6 form-group">
+		              <label for="institution">Institution Name</label><input type="text" class="form-control" name='institution' required id="institution" placeholder="Institution Name" value="{{ userData.institution }}">
+		            </div>
+		            <div class="col-xs-12 col-sm-6 form-group">
+		              <label for="pointContact">Point of Contact</label><input type="text" class="form-control" name='pointContact' required id="pointContact" placeholder="Point Contact" value="{{ userData.pointContact }}" >
+		            </div>
+		        </div>
+		        <div class="row">
+		            <div class="col-xs-12 col-sm-6 form-group">
+		              <label for="phone">Phone Number</label><input type="text" pattern="[0-9]*.{10}" title="Please Check your phone number." class="form-control" name='mobile' required id="mobile" placeholder="Phone Number" value="{{ userData.mobile }}">
+		            </div>
+		            <div class="col-xs-12 col-sm-6 form-group">
+		              <label for="designation">Designation</label><input type="text" class="form-control" name='designation' id="designation" placeholder="Designation" value="{{ userData.designation }}">
+		            </div>
+		        </div>
+		        <div class="row">
+		            <div class="col-xs-12 col-sm-4 form-group">
+		              <label for="city">City</label><input type="text" class="form-control" name='city'  id="city" placeholder="City" value="{{ userData.address.city }}">
+		            </div>
+		            <div class="col-xs-12 col-sm-4 form-group">
+		              <label for="state">State</label><input type="text" class="form-control" name='state' id="state" placeholder="State" value="{{ userData.address.state }}">
+		            </div>
+		            <div class="col-xs-12 col-sm-4 form-group">
+		              <label for="country">Country</label><input type="text" class="form-control" name='country'  id="country" placeholder="Country" value="{{ userData.address.country }}">
+		            </div>
+		        </div>
+		        <div class="row">
+		            <div class="col-xs-12 col-sm-6 form-group">
+		              <label for="email">E-mail</label><input type="email" class="form-control" name='email' id="email" placeholder="E-mail" value="{{ userData.email }}">
+		            </div>
+		            <div class="col-xs-12 col-sm-6 form-group">
+						<label for="counsellor">Assigned Counsellor</label>
+						<select name="assignedCounsellor" id="assignedCounsellor" class="form-control">
+						{% for counsellor in counsellorList %}
+							<option value="{{ counsellor._id.toString() }}"
+							{% if counsellor._id.toString() == userData.assignedCounsellor._id.toString()%}
+								selected
+							{% endif %}
+							>{{ counsellor.first_name }} {{counsellor.last_name}}</option>
+						{% endfor %}
+						</select>
+					</div>
+		        </div>
+		        <div class="row">
+		            <div class="col-xs-12 col-sm-6 form-group">
+						<label for="followupDate">FollowUp Date</label>
+						<input type="date" class="form-control" name="followupDate"
+						 {% if userData.followupDate!= null %} value="{{userData.followupDate }}" {% endif %}/>
+					</div>
+		            <div class="col-xs-12 col-sm-6 form-group">
+						<label for="followupDetails">FollowUp Details</label>
+						<input type="text" name="followupDetails" class="form-control" value="{{ userData.followupDetails }}"/>
+					</div>
+		        </div>
+		        <div class="row">
+		            <div class="col-xs-12 col-sm-6 form-group">
+						<label for="dob">Date of Birth</label>
+						<input type="date" class="form-control" placeholder="DD/MM/YYYY" name="dob" value = "{{ userData.dob.toISOString().substring(0,10) }}" />
+					</div>
+		            <div class="col-xs-12 col-sm-6 form-group">
+						<label for="description">Description</label>
+						<input type="text" name="description" class="form-control" value="{{ userData.description }}"/>
+					</div>
+		        </div>
+			</div>
+				<br>
+				<button class="btn btn-default btn-lg center-block" role="submit">Save Changes</button>
+			</div>
+		</form>
+		<script>
+			document.getElementById("maritial").value = "{{ userData.maritial }}";
+		</script>
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_VvfAe0dj0Gqr8ffE3JfH0ID8cncbbKI&signed_in=true&libraries=places&callback=initAutocomplete" async defer></script>
+
+{% endblock%}

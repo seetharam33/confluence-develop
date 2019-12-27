@@ -1,0 +1,55 @@
+{% extends 'nav.html' %}
+
+{% block title %}
+{% parent %}
+Universities of Usa
+{% endblock %}
+
+{% block userclass %}class="active"{% endblock %}
+
+{% block customCSS %}
+{% parent %}
+<link href="css/style.css" rel='stylesheet' type='text/css'/>
+{% endblock %}
+
+{% block content %}
+{% parent %}
+{% if success.length>0 %}
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            {{success[0]}}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if error.length>0 %}
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            {{error[0]}}
+        </div>
+    </div>
+</div>
+{% endif %}
+<table id="userData" class="table table-striped table-bordered" width="100%">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>University Type</th>
+        <th>Type of Course</th>
+        <th>City</th>
+        <th>Category</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>{% for univ in univData %}<tr><td><a href="/counsellor/UsaDetails/{{ univ._id.toString() }}">{{ univ.university }}</a></td>
+        <td>{{ univ.type }}</td>
+        <td>{{ univ.course }}</td>
+        <td>{{ univ.city }}</td>
+        <td>{{ univ.category }}</td>
+        <td><a href="/counsellor/actionunivUsa/{{univ._id.toString()}}"<i title="Remove" class="fa fa-trash-o"></i></a></td></tr>{% endfor %}</tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,59 @@
+<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Confluence Admin</title>
+<link href="css/admincss.css" rel="stylesheet" type="text/css" media="all"/>
+<!-- Custom Theme files -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<!--web-fonts-->
+<link href='//fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Raleway:400,100,200,500,600,700,800,900' rel='stylesheet' type='text/css'>
+<!--web-fonts-->
+<script src="js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="header">
+		<img src="images/confluence.png" height="60%" class="header-image"/>	
+	</div>
+	<div class="main">
+		<div class="mail-section">
+				<div class="mail-image">
+					<img src="images/message.png" alt="" />
+						<h3>Welcome to</h3>
+						<h2>Confluence</h2>
+				</div>
+					<div class="mail-form">
+					<form action="/admin/forgot" method="POST">
+					<div class="types">
+						<p class="heading">
+							Forgot Passowrd
+						</p>					
+						<input type="radio" name="types" value="counsellor" selected ="true"> counsellor
+  						<input type="radio" name="types" value="trainer"> Trainer
+  					</div>
+  						<input type="text" placeholder="Enter your email id" required="" name ="email" />
+						<br><br>
+						{% if success.length>0 %}
+						<p style="color: #66CD00;">{{success[0]}}</p>
+						{% endif %}	
+						{% if error.length>0 %}
+						<p style="color: #9B111E;">{{error[0]}}</p>
+						{% endif %}			
+						<input type="submit" value="submit">
+					</form>
+				</div>
+			<div class="clear"> </div>
+		</div>
+	</div>
+		<div class="footer">
+		</div>
+
+</body>
+</html>

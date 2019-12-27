@@ -1,0 +1,133 @@
+{% extends 'nav.html' %}
+{% block title %}Personal Details{% endblock %}
+{% block personalclass %}class="active"{% endblock %}
+{% block customCSS %}
+ {% parent %}
+   <link href="css/user.css" rel='stylesheet' type='text/css' />
+   <link href="css/style.css" rel='stylesheet' type='text/css' />
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+	 <div class="form container-fluid">
+	  	<form action ="/hub/personalEdit" method="POST">
+	  	{{error}}
+  			{% if success.length>0 %}
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							{{success[0]}}
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			{% if error.length>0 %}
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							{{error[0]}}
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			<div class="details">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 form-group">
+						<label for="first_name">First Name</label>
+						<input type="text" name="first_name" class="form-control" value="{{ userData.first_name }}"/>
+					</div>
+					<div class="col-xs-12 col-sm-6 form-group">
+						<label for="last_name">Last Name</label>
+						<input type="text" name="last_name" class="form-control" value="{{ userData.last_name }}"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 form-group">
+						<label for="email">Email Id</label>
+						<input type="email" class="form-control" name="email" value="{{ userData.email }}"/>
+					</div>
+					<div class="col-xs-12 col-sm-6 form-group">
+						<label for="altEmail">Alternate Email Id</label>
+						<input type="email" class="form-control" name="altEmail" value="{{ userData.altEmail }}"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-4 form-group">
+						<label for="dob">Date of Birth</label>
+						<input type="date" class="form-control" placeholder="DD/MM/YYYY" name="dob" value = "{{ userData.dob.toISOString().substring(0,10) }}" />
+					</div>
+					<div class="col-xs-12 col-sm-4 form-group">
+						<label for="gender">Gender</label>
+						<select name="gender" class="form-control" value="{{ userData.gender }}">
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+						</select>
+					</div>
+					<div class="col-xs-12 col-sm-4 form-group">
+						<label for="maritial">Maritial Status</label>
+						<select name="maritial" id="maritial" class="form-control" value="{{ userData.maritial }}">
+							<option value="Married">Married</option>
+							<option value="Single">Single</option>
+							<option value="Divorced">Divorced</option>
+							<option value="Engaged">Engaged</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-4 form-group">
+						<label for="insitution">Institution Name</label>
+						<input type="text" class="form-control" name="institution" value="{{ userData.institution}}"/>
+					</div>
+					<div class="col-xs-12 col-sm-4 form-group">
+						<label for="designation">Designation</label>
+						<input type="text" class="form-control" name="designation" value="{{ userData.designation }}"/>
+					</div>
+					<div class="col-xs-12 col-sm-4 form-group">
+						<label for="pointContact">Point of Contact</label>
+						<input type="text" class="form-control" name="pointContact" value="{{ userData.pointContact}}" />
+					</div>
+				</div>
+					<p>Address</p>
+				<div class="row">
+					<div class="col-xs-12">
+						<label for="line1">House / Street Name</label>
+						<input class="form-control" type="text" name="line1" value="{{ userData.address.line1}}"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<label for="line2">Locality</label>
+						<input class="form-control" onFocus="geolocate()"  id="autocomplete"  type="text" name="line2" value="{{ userData.address.line2}}"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6">
+						<label for="city">City</label>
+						<input class="form-control" id="locality" type="text"name="city" value="{{userData.address.city}}">
+					</div>
+					<div class="col-xs-12 col-sm-6">
+						<label for="state">State</label>
+						<input class="form-control" id="administrative_area_level_1" type="text" name="state" value="{{userData.address.state}}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6">
+						<label for="country">Country</label>
+						<input class="form-control" id="country" type="text" name="country" value="{{userData.address.country}}">
+					</div>
+					<div class="col-xs-12 col-sm-6">
+						<label for="pincode">PIN</label>
+						<input class="form-control" type="text" id ="postal_code" name="pincode" value="{{userData.address.pin }}">
+					</div>
+				</div>
+				<br>
+				<button class="btn btn-default btn-lg center-block" role="submit">Save Changes</button>
+			</div>
+		</form>
+		<script>
+			document.getElementById("maritial").value = "{{ userData.maritial }}";
+		</script>
+ 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_VvfAe0dj0Gqr8ffE3JfH0ID8cncbbKI&signed_in=true&libraries=places&callback=initAutocomplete" async defer></script>
+{% endblock%}

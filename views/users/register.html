@@ -1,0 +1,98 @@
+{% extends 'navbar.html' %}
+
+{% block customCSS %}
+ {% parent %}
+   <link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="css/default.css" rel='stylesheet' type='text/css' />
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+  <section id="register" class="home-section text-center">
+		<div class="heading-about">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown animated" data-wow-delay="0.4s" style="visibility: visible;-webkit-animation-delay: 0.4s; -moz-animation-delay: 0.4s; animation-delay: 0.4s;">
+					<div class="section-heading">
+					<h2>User Registration</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+
+		<div class="container">
+
+		<div class="row">
+
+			<div class="col-lg-2 col-lg-offset-5">
+				<hr class="marginbot-50">
+			</div>
+		</div>
+			<div class="row clearfix">
+				{% if reg_success.length>0 %}
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							Registration Successful. Please Login to Continue.
+						</div>
+					</div>
+				</div>
+				{% endif %}
+				{% if reg_error.length>0 %}
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							{{reg_error[0]}}
+						</div>
+					</div>
+				</div>
+				{% endif %}
+				<div class="col-md-4 column">
+				</div>
+				<div class="col-md-4 column">
+					<form role="form" method="POST" action="/users/register">
+						<style>
+							.form-group{
+								padding:1.5%;
+							}
+						</style>
+						<div class="form-group">
+							<label for="first_name">First Name</label><input type="text" class="form-control" name='first_name' required autofocus id="first_name" placeholder="First Name">
+						</div>
+						<div class="form-group">
+							<label for="last_name">Last Name</label><input type="text" class="form-control" name='last_name' required id="last_name" placeholder="Last Name">
+						</div>
+						<div class="form-group">
+							<label for="phone">Phone Number</label><input type="text" pattern="[0-9]*.{10}" title="Please Check your phone number." class="form-control" name='phone' required id="phone" placeholder="Phone Number">
+						</div>
+						<div class="form-group">
+							<label for="email">E-mail</label><input type="email" class="form-control" name='email' required id="email" placeholder="E-mail">
+						</div>
+            <div class="form-group">
+							<label for="Referral">Referred By</label><input type="text" class="form-control" name='refer' placeholder="Enter the referral Code">
+						</div>
+						<div class="form-group">
+							<label for="password">Password</label><input type="password" pattern=".{6,}" title="Password should be minimum 6 charecters" class="form-control" name='password' required id="password" placeholder="Password">
+						</div>
+						<div class="form-group">
+							<label for="confirm_password">Confirm Password</label><input type="password"  pattern=".{6,}" title="Password should be minimum 6 charecters" class="form-control" name='confirm_password' required id="comfirm_password" placeholder="Comfirm Password">
+						</div>
+						<button type="submit" class="btn btn-default" style="width:50%;">Register</button>
+					</form>
+				</div>
+				<div class="col-md-4 column">
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+
+<!-- Section: about -->
+
+<!--//End-login-form-->

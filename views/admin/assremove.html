@@ -1,0 +1,61 @@
+{% extends 'nav.html' %}
+
+{% block customCSS %}
+ {% parent %}
+   <link href="css/user.css" rel='stylesheet' type='text/css' />
+   <link href="css/style.css" rel='stylesheet' type='text/css' />
+{% endblock %}
+
+{% block userStaus %}
+	{% parent %}
+		class="active"
+{% endblock %}
+
+{% block title %}
+  {% parent %}
+  Remove Associate
+ {% endblock %}
+
+{% block content %}
+  {% parent %}
+	 <div class="form container-fluid">
+	  	<form action ="/admin/counsellor/assremove/{{id}}" method="POST">
+  			{% if success.length>0 %}
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							{{success[0]}}
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			{% if error.length>0 %}
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							{{error[0]}}
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			<div class="details">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 form-group">
+						<label for="counsellor">  	Select an associate to assign Students of Associate to be removed
+</label>
+						<select name="newCounsellor" id="newCounsellor" class="form-control">
+						{% for counsellor in userData %}
+							<option value="{{ counsellor._id.toString() }}" 
+							>{{ counsellor.first_name }} {{counsellor.last_name}}</option>
+						{% endfor %}
+						</select>
+					</div>
+				</div>
+		
+				<br>
+				<button class="btn btn-default btn-lg center-block" role="submit">Assign and Delte/button>
+			</div>
+		</form>
+{% endblock%}

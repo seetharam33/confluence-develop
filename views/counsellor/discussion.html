@@ -1,0 +1,52 @@
+{% extends 'navUser.html' %}
+
+{% block customCSS %}
+ {% parent %}
+   <link href="css/user.css" rel='stylesheet' type='text/css' />
+   <link href="css/style.css" rel='stylesheet' type='text/css' />
+{% endblock %}
+
+{% block title %}
+  {% parent %}
+    Discussion
+ {% endblock %}
+
+{% block discussion %}class="active"{% endblock %}
+
+{% block content %}
+  {% parent %}
+  {% if error.length>0 %}
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        {{error[0]}}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  <div class="row container-fluid discussion">
+    {% for message in userData.discussion %}
+      {% if message['_counsellor'] %}
+        <p class="triangle-border left"><b>Counsellor <i>{{ message.counsellor.first_name }}</i></b>: <br>{{ message.text }} {%if message['_file'] %}{% for count,val in Array(message.file.split(",").length) %} <a href = "files/{{message.file.split(",")[count]}}" target="download" >{% if message.text.length > 0 %}<br>{%endif%}{{message.orignalfile.split(",")[count]}}</a>{% endfor %}{%endif%}</p>
+      {% elseif message['_associate'] %}
+        <p class="triangle-border right"><b>Associate <i>{{ message.associate.first_name }}</i></b>: <br>{{ message.text }}  {%if message['_file'] %}{% for count,val in Array(message.file.split(",").length) %} <a href = "files/{{message.file.split(",")[count]}}" target="download" >{% if message.text.length > 0 %}<br>{%endif%}{{message.orignalfile.split(",")[count]}}</a>{% endfor %}{%endif%}</p>
+      {% else %}
+        <p class="triangle-border right"><b>{{ userData.first_name }}</b>: <br>{{ message.text }} {%if message['_file'] %}{% for count,val in Array(message.file.split(",").length) %} <a href = "files/{{message.file.split(",")[count]}}" target="download" >{% if message.text.length > 0 %}<br>{%endif%}{{message.orignalfile.split(",")[count]}}</a>{% endfor %}{%endif%}</p>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <form class=" message" method="post" enctype="multipart/form-data" action="/counsellor/discussion/{{ userData._id.toString() }}">
+  	<div class="row">
+  		<div class="col-xs-12">Attach Files upto 10MB Only
+         <input type="file" name='attach' id="attach" multiple >
+		    <div class="input-group form-group">
+		      <textarea rows="4" cols="50" name="message" class="form-control"></textarea>
+		      <span class="input-group-btn">
+		        <button class="btn btn-default"  type="submit">Send</button>
+		      </span>
+		    </div>
+		</div>
+    </div>
+  </form>
+ {% endblock %}

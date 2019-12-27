@@ -1,0 +1,296 @@
+{% extends 'navUser.html' %}
+
+{% block customCSS %}
+{% parent %}
+<link href="css/user.css" rel='stylesheet' type='text/css'/>
+<link href="css/style.css" rel='stylesheet' type='text/css'/>
+{% endblock %}
+
+{% block userStaus %}
+{% parent %}
+class="active"
+{% endblock %}
+
+{% block title %}
+{% parent %}
+Student Status
+{% endblock %}
+
+{% block content %}
+{% parent %}
+<div class="form container-fluid">
+    <form action="/counsellor/status/{{userData._id.toString()}}" method="POST">
+        {% if success.length>0 %}
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {{success[0]}}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if error.length>0 %}
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {{error[0]}}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="details">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 form-group">
+                    <label for="counsellor">Assigned Counsellor</label>
+                    <select name="assignedCounsellor" id="assignedCounsellor" class="form-control">
+                        <option value=""></option>
+                        {% for counsellor in counsellorList %}
+                        <option value="{{ counsellor._id.toString() }}"
+                                {% if counsellor._id.toString()== userData.assignedCounsellor._id.toString()%}
+                                selected
+                                {% endif %}
+                        >{{ counsellor.first_name }} {{counsellor.last_name}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-xs-8 col-sm-4 form-group">
+                    <label for="leadStatus">Lead Status</label>
+                    <input type="text" name="leadStatus" required class="form-control"
+                           placeholder="Enter new Lead Status"/>
+
+                </div>
+                <div class="col-xs-4 col-sm-2 form-group">
+                    <br>
+                    <button class="btn btn-info" id="loadDetails">Status Details</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-default btn-lg center-block" role="submit">Save Changes</button>
+    </form>
+    <form action="/counsellor/createtask/{{userData._id.toString()}}" method="POST">
+        <p>Tasks</p>
+        <div class="details">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 form-group">
+                    <label for="followupDate">Description</label>
+                    <input type="text" class="form-control" name="description"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 form-group">
+                    <label for="followupDate">FollowUp Date</label>
+                    <input type="date" class="form-control" name="followupDate"/>
+                </div>
+                <div class="col-xs-12 col-sm-6 form-group">
+                    <label for="followupDetails">FollowUp Details</label>
+                    <select name="followupDetails" class="form-control">
+                      <option {% if userData.followupDetails=="Accommodation" %} selected {%endif%} value="Accommodation">Accommodation</option>
+                      <option {% if userData.followupDetails=="Admission Interview Date from University" %} selected {%endif%} value="Admission Interview Date from University">Admission Interview Date from University</option>
+                      <option {% if userData.followupDetails=="Admission Interview date from Student" %} selected {%endif%} value="Admission Interview date from Student">Admission Interview date from Student</option>
+                      <option {% if userData.followupDetails=="Airport Pick-up" %} selected {%endif%} value="Airport Pick-up">Airport Pick-up</option>
+                      <option {% if userData.followupDetails=="Application fee payment:" %} selected {%endif%} value="Application fee payment:">Application fee payment:</option>
+                      <option {% if userData.followupDetails=="Apply for Residence Permit (VVR)" %} selected {%endif%} value="Apply for Residence Permit (VVR)">Apply for Residence Permit (VVR)</option>
+                      <option {% if userData.followupDetails=="Approved Associate Invoice" %} selected {%endif%} value="Approved Associate Invoice">Approved Associate Invoice</option>
+                      <option {% if userData.followupDetails=="Authorization Letter" %} selected {%endif%} value="Authorization Letter">Authorization Letter</option>
+                      <option {% if userData.followupDetails=="BRPs" %} selected {%endif%} value="BRPs">BRPs</option>
+                      <option {% if userData.followupDetails=="Biometrics" %} selected {%endif%} value="Biometrics">Biometrics</option>
+                      <option {% if userData.followupDetails=="Blocked Account" %} selected {%endif%} value="Blocked Account">Blocked Account</option>
+                      <option {% if userData.followupDetails=="Booking test date" %} selected {%endif%} value="Booking test date">Booking test date</option>
+                      <option {% if userData.followupDetails=="CAS Due" %} selected {%endif%} value="CAS Due">CAS Due</option>
+                      <option {% if userData.followupDetails=="CAS Received" %} selected {%endif%} value="CAS Received">CAS Received</option>
+                      <option {% if userData.followupDetails=="COE Due" %} selected {%endif%} value="COE Due">COE Due</option>
+                      <option {% if userData.followupDetails=="COE Received" %} selected {%endif%} value="COE Received">COE Received</option>
+                      <option {% if userData.followupDetails=="Courier Details" %} selected {%endif%} value="Courier Details">Courier Details</option>
+                      <option {% if userData.followupDetails=="DOV Due" %} selected {%endif%} value="DOV Due">DOV Due</option>
+                      <option {% if userData.followupDetails=="Date of Joining for classes" %} selected {%endif%} value="Date of Joining for classes">Date of Joining for classes</option>
+                      <option {% if userData.followupDetails=="Date of Joining" %} selected {%endif%} value="Date of Joining">Date of Joining</option>
+                      <option {% if userData.followupDetails=="Docs of Dependent" %} selected {%endif%} value="Docs of Dependent">Docs of Dependent</option>
+                      <option {% if userData.followupDetails=="Due Date to Associate Invoice" %} selected {%endif%} value="Due Date to Associate Invoice">Due Date to Associate Invoice</option>
+                      <option {% if userData.followupDetails=="E-Shipment" %} selected {%endif%} value="E-Shipment">E-Shipment</option>
+                      <option {% if userData.followupDetails=="Face to face counseling" %} selected {%endif%} value="Face to face counseling">Face to face counseling</option>
+                      <option {% if userData.followupDetails=="Feedback in Facebook" %} selected {%endif%} value="Feedback in Facebook">Feedback in Facebook</option>
+                      <option {% if userData.followupDetails=="Feedback in Google Review" %} selected {%endif%} value="Feedback in Google Review">Feedback in Google Review</option>
+                      <option {% if userData.followupDetails=="Feedback in Website" %} selected {%endif%} value="Feedback in Website">Feedback in Website</option>
+                      <option {% if userData.followupDetails=="Financial Approval Due" %} selected {%endif%} value="Financial Approval Due">Financial Approval Due</option>
+                      <option {% if userData.followupDetails=="Financial Approved" %} selected {%endif%} value="Financial Approved">Financial Approved</option>
+                      <option {% if userData.followupDetails=="Flight Ticket" %} selected {%endif%} value="Flight Ticket">Flight Ticket</option>
+                      <option {% if userData.followupDetails=="GIC Payment" %} selected {%endif%} value="GIC Payment">GIC Payment</option>
+                      <option {% if userData.followupDetails=="GRE Exam" %} selected {%endif%} value="GRE Exam">GRE Exam</option>
+                      <option {% if userData.followupDetails=="I-20 Rejected" %} selected {%endif%} value="I-20 Rejected">I-20 Rejected</option>
+                      <option {% if userData.followupDetails=="ID Card (student visa)" %} selected {%endif%} value="ID Card (student visa)">ID Card (student visa)</option>
+                      <option {% if userData.followupDetails=="IELTS/PTE/TOEFL Exam" %} selected {%endif%} value="IELTS/PTE/TOEFL Exam">IELTS/PTE/TOEFL Exam</option>
+                      <option {% if userData.followupDetails=="Incomplete Admission docs" %} selected {%endif%} value="Incomplete Admission docs">Incomplete Admission docs</option>
+                      <option {% if userData.followupDetails=="Incomplete Visa docs" %} selected {%endif%} value="Incomplete Visa docs">Incomplete Visa docs</option>
+                      <option {% if userData.followupDetails=="Installments are paid" %} selected {%endif%} value="Installments are paid">Installments are paid</option>
+                      <option {% if userData.followupDetails=="Invoice Approved with partial students" %} selected {%endif%} value="Invoice Approved with partial students">Invoice Approved with partial students</option>
+                      <option {% if userData.followupDetails=="Invoice Approved" %} selected {%endif%} value="Invoice Approved">Invoice Approved</option>
+                      <option {% if userData.followupDetails=="Invoice rejected" %} selected {%endif%} value="Invoice rejected">Invoice rejected</option>
+                      <option {% if userData.followupDetails=="Invoice to Associates" %} selected {%endif%} value="Invoice to Associates">Invoice to Associates</option>
+                      <option {% if userData.followupDetails=="Invoice to university" %} selected {%endif%} value="Invoice to university">Invoice to university</option>
+                      <option {% if userData.followupDetails=="Issue of SSA by counselor:" %} selected {%endif%} value="Issue of SSA by counselor:">Issue of SSA by counselor:</option>
+                      <option {% if userData.followupDetails=="Issues with admission" %} selected {%endif%} value="Issues with admission">Issues with admission</option>
+                      <option {% if userData.followupDetails=="Material handover" %} selected {%endif%} value="Material handover">Material handover</option>
+                      <option {% if userData.followupDetails=="Medical Insurance: Student Status" %} selected {%endif%} value="Medical Insurance: Student Status">Medical Insurance: Student Status</option>
+                      <option {% if userData.followupDetails=="Medicals- Rejected" %} selected {%endif%} value="Medicals- Rejected">Medicals- Rejected</option>
+                      <option {% if userData.followupDetails=="Medicals:" %} selected {%endif%} value="Medicals:">Medicals:</option>
+                      <option {% if userData.followupDetails=="Mock Visa Interview Slot" %} selected {%endif%} value="Mock Visa Interview Slot">Mock Visa Interview Slot</option>
+                      <option {% if userData.followupDetails=="Next intake" %} selected {%endif%} value="Next intake">Next intake</option>
+                      <option {% if userData.followupDetails=="No Attendance" %} selected {%endif%} value="No Attendance">No Attendance</option>
+                      <option {% if userData.followupDetails=="OSHC refund Status" %} selected {%endif%} value="OSHC refund Status">OSHC refund Status</option>
+                      <option {% if userData.followupDetails=="Offer Rejected" %} selected {%endif%} value="Offer Rejected">Offer Rejected</option>
+                      <option {% if userData.followupDetails=="Police Clearance Certificate" %} selected {%endif%} value="Police Clearance Certificate">Police Clearance Certificate</option>
+                      <option {% if userData.followupDetails=="Portfolio Pending" %} selected {%endif%} value="Portfolio Pending">Portfolio Pending</option>
+                      <option {% if userData.followupDetails=="Pre-Enrollment Letter (Form A)" %} selected {%endif%} value="Pre-Enrollment Letter (Form A)">Pre-Enrollment Letter (Form A)</option>
+                      <option {% if userData.followupDetails=="Provisional Residence Permit (MVV)" %} selected {%endif%} value="Provisional Residence Permit (MVV)">Provisional Residence Permit (MVV)</option>
+                      <option {% if userData.followupDetails=="Remainder for Associate" %} selected {%endif%} value="Remainder for Associate">Remainder for Associate</option>
+                      <option {% if userData.followupDetails=="Remainder for CA" %} selected {%endif%} value="Remainder for CA">Remainder for CA</option>
+                      <option {% if userData.followupDetails=="Remainder for College" %} selected {%endif%} value="Remainder for College">Remainder for College</option>
+                      <option {% if userData.followupDetails=="Remainder for HelpDesk Counselors" %} selected {%endif%} value="Remainder for HelpDesk Counselors">Remainder for HelpDesk Counselors</option>
+                      <option {% if userData.followupDetails=="Remainder for IELTS Trainer" %} selected {%endif%} value="Remainder for IELTS Trainer">Remainder for IELTS Trainer</option>
+                      <option {% if userData.followupDetails=="Remainder for School" %} selected {%endif%} value="Remainder for School">Remainder for School</option>
+                      <option {% if userData.followupDetails=="Remainder for Trainers" %} selected {%endif%} value="Remainder for Trainers">Remainder for Trainers</option>
+                      <option {% if userData.followupDetails=="Remainder for uni" %} selected {%endif%} value="Remainder for uni">Remainder for uni</option>
+                      <option {% if userData.followupDetails=="SSA signed by student & parents" %} selected {%endif%} value="SSA signed by student & parents">SSA signed by student & parents</option>
+                      <option {% if userData.followupDetails=="Shortlisting accepted by parents" %} selected {%endif%} value="Shortlisting accepted by parents">Shortlisting accepted by parents</option>
+                      <option {% if userData.followupDetails=="Shortlisting accepted by student:" %} selected {%endif%} value="Shortlisting accepted by student:">Shortlisting accepted by student:</option>
+                      <option {% if userData.followupDetails=="Shortlisting by Counselor:" %} selected {%endif%} value="Shortlisting by Counselor:">Shortlisting by Counselor:</option>
+                      <option {% if userData.followupDetails=="Shortlisting under discussion" %} selected {%endif%} value="Shortlisting under discussion">Shortlisting under discussion</option>
+                      <option {% if userData.followupDetails=="Signed SSA from student:" %} selected {%endif%} value="Signed SSA from student:">Signed SSA from student:</option>
+                      <option {% if userData.followupDetails=="Signed SSA from the associate" %} selected {%endif%} value="Signed SSA from the associate">Signed SSA from the associate</option>
+                      <option {% if userData.followupDetails=="Skype/Hangout Counseling" %} selected {%endif%} value="Skype/Hangout Counseling">Skype/Hangout Counseling</option>
+                      <option {% if userData.followupDetails=="Student Installment Due" %} selected {%endif%} value="Student Installment Due">Student Installment Due</option>
+                      <option {% if userData.followupDetails=="Student Transfered from the base university" %} selected {%endif%} value="Student Transfered from the base university">Student Transfered from the base university</option>
+                      <option {% if userData.followupDetails=="Student didn't enrolled" %} selected {%endif%} value="Student didn't enrolled">Student didn't enrolled</option>
+                      <option {% if userData.followupDetails=="Today Birthday" %} selected {%endif%} value="Today Birthday">Today Birthday</option>
+                      <option {% if userData.followupDetails=="Today Payment registration: Fees Pending (expected date of payment)" %} selected {%endif%} value="Today Payment registration: Fees Pending (expected date of payment)">Today Payment registration: Fees Pending (expected date of payment)</option>
+                      <option {% if userData.followupDetails=="Today Recos Submission" %} selected {%endif%} value="Today Recos Submission">Today Recos Submission</option>
+                      <option {% if userData.followupDetails=="Today SOP Submission:" %} selected {%endif%} value="Today SOP Submission:">Today SOP Submission:</option>
+                      <option {% if userData.followupDetails=="Today followup" %} selected {%endif%} value="Today followup">Today followup</option>
+                      <option {% if userData.followupDetails=="Today’s Results" %} selected {%endif%} value="Today’s Results">Today’s Results</option>
+                      <option {% if userData.followupDetails=="Tracking for admission" %} selected {%endif%} value="Tracking for admission">Tracking for admission</option>
+                      <option {% if userData.followupDetails=="Transcripts dispatch to WES" %} selected {%endif%} value="Transcripts dispatch to WES">Transcripts dispatch to WES</option>
+                      <option {% if userData.followupDetails=="Translation, Appostile & Translation" %} selected {%endif%} value="Translation, Appostile & Translation">Translation, Appostile & Translation</option>
+                      <option {% if userData.followupDetails=="Travel Insurance" %} selected {%endif%} value="Travel Insurance">Travel Insurance</option>
+                      <option {% if userData.followupDetails=="Travel" %} selected {%endif%} value="Travel">Travel</option>
+                      <option {% if userData.followupDetails=="Uni Offers letters:" %} selected {%endif%} value="Uni Offers letters:">Uni Offers letters:</option>
+                      <option {% if userData.followupDetails=="Uni Score Reporting" %} selected {%endif%} value="Uni Score Reporting">Uni Score Reporting</option>
+                      <option {% if userData.followupDetails=="Uni join Acknowledgement" %} selected {%endif%} value="Uni join Acknowledgement">Uni join Acknowledgement</option>
+                      <option {% if userData.followupDetails=="Uni packets dispatch:" %} selected {%endif%} value="Uni packets dispatch:">Uni packets dispatch:</option>
+                      <option {% if userData.followupDetails=="University Pre-Visa fee payment:" %} selected {%endif%} value="University Pre-Visa fee payment:">University Pre-Visa fee payment:</option>
+                      <option {% if userData.followupDetails=="University fee refund status" %} selected {%endif%} value="University fee refund status">University fee refund status</option>
+                      <option {% if userData.followupDetails=="University forms filling:" %} selected {%endif%} value="University forms filling:">University forms filling:</option>
+                      <option {% if userData.followupDetails=="Universiy interview Pending" %} selected {%endif%} value="Universiy interview Pending">Universiy interview Pending</option>
+                      <option {% if userData.followupDetails=="Visa Application submission" %} selected {%endif%} value="Visa Application submission">Visa Application submission</option>
+                      <option {% if userData.followupDetails=="Visa Approved" %} selected {%endif%} value="Visa Approved">Visa Approved</option>
+                      <option {% if userData.followupDetails=="Visa Copy from Associate" %} selected {%endif%} value="Visa Copy from Associate">Visa Copy from Associate</option>
+                      <option {% if userData.followupDetails=="Visa Copy from student" %} selected {%endif%} value="Visa Copy from student">Visa Copy from student</option>
+                      <option {% if userData.followupDetails=="Visa Interview Slot:" %} selected {%endif%} value="Visa Interview Slot:">Visa Interview Slot:</option>
+                      <option {% if userData.followupDetails=="Visa SOP Pending" %} selected {%endif%} value="Visa SOP Pending">Visa SOP Pending</option>
+                      <option {% if userData.followupDetails=="Visa Submission Pending" %} selected {%endif%} value="Visa Submission Pending">Visa Submission Pending</option>
+                      <option {% if userData.followupDetails=="Visa copy to the university" %} selected {%endif%} value="Visa copy to the university">Visa copy to the university</option>
+                      <option {% if userData.followupDetails=="Visa forms filling:" %} selected {%endif%} value="Visa forms filling:">Visa forms filling:</option>
+                      <option {% if userData.followupDetails=="Visa- Rejected" %} selected {%endif%} value="Visa- Rejected">Visa- Rejected</option>
+                      <option {% if userData.followupDetails=="WES form filling" %} selected {%endif%} value="WES form filling">WES form filling</option>
+                      <option {% if userData.followupDetails=="Waiting for i-20" %} selected {%endif%} value="Waiting for i-20">Waiting for i-20</option>
+                      <option {% if userData.followupDetails=="Withdrawn" %} selected {%endif%} value="Withdrawn">Withdrawn</option>
+
+                    </select>
+                </div>
+            </div>
+
+            <br>
+            <button class="btn btn-default btn-lg center-block" role="submit">Create Task</button>
+        </div>
+    </form>
+    <br>
+    <div class="details">
+        <table id="userData" class="table table-striped table-bordered" width="100%">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Follow-up Date</th>
+                <th>Status</th>
+                <th>Action Date</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for task in taskList %}
+            <tr>
+                <td>{{ task.followupDetails }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.followupDate.toISOString().substring(0,10) }}</td>
+                <td>{{ task.status }}</td>
+                <td>{{ task.actionDate.toISOString().substring(0,10) }}
+                <td>
+                {% if task.status === "Open" %}
+                    <a href="/counsellor/actiontask/{{userData._id.toString()}}/{{task._id.toString()}}/1"<i style="color:black" title="Cancel Task"
+                                                                                 class="fa fa-ban"></i></a>
+                    <a href="/counsellor/actiontask/{{userData._id.toString()}}/{{task._id.toString()}}/2"<i style="color:green"
+                                                                                 title="Complete Task"
+                                                                                 class="fa fa-check"></i></a>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock%}
+    {%block customScript%}
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script>
+        $("#loadDetails").click(function (event) {
+            event.preventDefault();
+            // console.log("i am here",id);
+            var address = window.location.pathname;
+            arr = address.split("/");
+            console.log(arr.length)
+            var id = arr[arr.length - 1];
+            $.ajax({
+                type: 'POST',
+                url: "../leadStatus/" + id,
+                success: function (res) {
+                    message = '<table class="table table-striped table-bordered" width="auto">' +
+                        '<thead>' +
+                        '<tr>' +
+                        '<th width="100px">Lead status</th>' +
+                        '<th width="100px">Date</th>' +
+                        '</tr>' +
+                        '</thead>' +
+                        '<tbody id="installationBody">';
+                    var l = res.leadStatus;
+                    for (var i = 0; i < res.leadStatus.length; i++) {
+                        // console.log(l[i],l,"asd");
+                        message = message + '<tr>' +
+                            '<td>' + l[i].status + '</td>' +
+                            '<td>' + l[i].time + '</td>' +
+                            '</tr>';
+                    }
+                    // console.log(res);
+                    mesage = message + '</tbody></table>';
+                    bootbox.dialog({
+                        message: message,
+                        title: "Lead Status of User",
+                        onEscape: true,
+                        backdrop: true
+                    });
+                },
+                error: function (err, error) {
+                    bootbox.alert("Faced Internal Error. Please Try again");
+                    console.log(err, "error");
+                }
+            });
+        });
+    </script>
+    {%endblock%}

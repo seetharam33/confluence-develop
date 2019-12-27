@@ -1,0 +1,161 @@
+
+{% extends 'navUniv.html' %}
+
+{% block title %}
+  {% parent %}
+  	Univeristy in New Zealand
+{% endblock %}
+{% block customCSS %}
+ {% parent %}
+   <link href="css/style.css" rel='stylesheet' type='text/css' />
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+    <div class="form">
+      <form>
+        <div class="row">
+          {% if error.length > 0 %}
+          <div class="alert alert-success alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              {{ error[0] }}
+            </div>
+        {% endif %}
+        {% if success.length > 0 %}
+          <div class="alert alert-success alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              {{ success[0] }}
+            </div>
+        {% endif %}
+          <div class="col-xs-12 col-sm-12 form-group">
+          <label for="university">University Name</label>
+              <input class="form-control" required class="form-group" type="text" name="university" placeholder="University Name" value="{{univData.university}}" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="coursetype">Type of Course</label>
+              <select name="coursetype" placeholder="coursetype" class="form-control">
+                <option {% if univData.type == "master" %} selected {%endif%} value="master">M.S.</option>
+                <option {% if univData.type == "bachelor" %} selected {%endif%} value="bachelor">Bachelors</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="course">Course Name</label>
+              <input class="form-control" type="text" name="course" placeholder="course" value="{{univData.coursename}}"/>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="programLink">Program Link</label>
+              <input class="form-control" type="text" name="programLink" placeholder="Program Link" value="{{univData.programLink}}"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 form-group">
+          <label for="itpname">ITP Name</label>
+              <input class="form-control" class="form-group" type="text" name="itpname" placeholder="ITP Name" value="{{univData.itpname}}"  />
+          </div>
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+              <label for="itp">ITP TYPE</label>
+              <select name="itp" class="form-control">
+                <option value=""></option>
+                <option {% if univData.itp == "5" %} selected {%endif%} value="5">LEVEL 5</option>
+                <option {% if univData.itp == "6" %} selected {%endif%} value="6">LEVEL 6</option>
+                <option {% if univData.itp == "7" %} selected {%endif%} value="7">LEVEL 7</option>
+                <option {% if univData.itp == "8" %} selected {%endif%} value="8">LEVEL 8</option>
+                <option {% if univData.itp == "9" %} selected {%endif%} value="9">LEVEL 9</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 form-group">
+            <label for="ptename">PTE  Name</label>
+              <input class="form-control" class="form-group" type="text" name="ptename" placeholder="PTE Name" value="{{univData.ptename}}"/>
+          </div>
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="pte">PTE TYPE</label>
+              <select name="pte" class="form-control">
+                <option value=""></option>
+                <option {% if univData.pte == "5" %} selected {%endif%} value="5">LEVEL 5</option>
+                <option {% if univData.pte == "6" %} selected {%endif%} value="6">LEVEL 6</option>
+                <option {% if univData.pte == "7" %} selected {%endif%} value="7">LEVEL 7</option>
+                <option {% if univData.pte == "8" %} selected {%endif%} value="8">LEVEL 8</option>
+                <option {% if univData.pte == "9" %} selected {%endif%} value="9">LEVEL 9</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="city">City</label>
+              <input class="form-control" class="form-group" type="text" name="city" placeholder="City" value="{{univData.city}}"/>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="island">Island</label>
+              <input class="form-control" type="text" name="island" placeholder="Island" value="{{univData.island}}" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="dept">Department</label>
+              <input class="form-control" class="text" name="dept" placeholder="department" value="{{univData.department}}"/>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="deptDeadline">Department Deadline</label>
+              <input class="form-control" type="text" name="deadline" placeholder="DD/MM/YYYY" value="{{univData.deadline}}"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="appFee">Application Fees</label>
+              <input class="form-control" type="text" name="appFee" placeholder="Application Fees" value="{{univData.applicationFee}}"/>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="annualFee">Annual Fees</label>
+              <input class="form-control" type="text" name="annualFee" placeholder="Annual Fees" value="{{univData.annualFee}}"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="intake">Total Intake</label>
+              <input class="form-control" type="text" name="intake" placeholder="Total Intake" value="{{univData.intake}}"/>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="toefl">TOEFL</label>
+              <input class="form-control" type="number" min="0" max="120" name="toefl" placeholder="TOEFL" value="{{univData.toefl}}"/>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="ielts">IELTS</label>
+              <input class="form-control" type="number" min="0" max="9" step="0.5" name="ielts" placeholder="IELTS" value="{{univData.ielts}}"/>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+{% endblock %}

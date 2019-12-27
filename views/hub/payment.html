@@ -1,0 +1,50 @@
+
+{% extends 'navUser.html' %}
+
+{% block title %}
+  {% parent %}
+    Payment Portal
+{% endblock %}
+
+{% block payment %}class="active"{% endblock %}
+
+{% block customCSS %}
+ {% parent %}
+   <link href="css/style.css" rel='stylesheet' type='text/css' />
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+    <table id="userData" class="table table-striped table-bordered" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Payment Amount</th>
+                                    <th>Payment Description</th>
+                                    <th>Status</th>
+                                    <th>Action</th>                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for paymentDetails in userData.payment %}
+                                   <tr>
+                                        <td>{{paymentDetails.amount}}</td> 
+                                        <td>{{ paymentDetails.details }}</td>
+                                        <td>{{ paymentDetails.status }}</td>
+                                        <td>{%if paymentDetails.payment.status!= "paid"%}<a href="https://www.instamojo.com/rebuildindia/confluence-educational-services/?data_name={{userData.first_name}}{{userData.last_name}}&data_email={{userData.email}}&data_phone={{userData.phone.mobile}}&data_amount={{paymentDetails.amount}}&data_Field_65742={{userData._id.toString()}}&data_readonly=data_name&data_readonly=data_email&data_readonly=data_phone&data_readonly=data_amount&data_readonly=data_Field_65742&data_hidden=data_Field_65742&embed=form"><button class="btn btn-default center-block">Pay Now</button></a>
+                                        {% else %}
+                                            Invoice Details
+                                        {% endif %} </td>
+                                   </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    <div class="form">
+                        <br>
+                   
+                   </div>
+{% endblock %}
+
+<!-- Section: about -->
+    
+<!--//End-login-form-->
+ 

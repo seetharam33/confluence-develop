@@ -1,0 +1,74 @@
+
+{% extends '../counsellor/nav.html' %}
+
+{% block title %}
+  {% parent %}
+  	Counsellor
+{% endblock %}
+
+{% block customCSS %}
+ {% parent %}
+   <link href="css/style.css" rel='stylesheet' type='text/css' />
+{% endblock %}
+
+{% block content %}
+    {% parent %}
+    {% if error.length > 0 %}
+    <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                {{ error[0] }}
+            </div>
+    {% endif %}
+    {% if success.length > 0 %}
+    <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                {{ success[0] }}
+            </div>
+{% endif %}
+  	<table id="userData" class="table table-striped table-bordered" width="100%">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>E-Mail</th>
+                <th>Phone</th>
+                <th>Email Confirmed</th>
+                <th>Aproved</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in userData  %}
+               <tr>
+                    <td>{{ user.first_name }}</td> 
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>
+                    {% if user._email  %}
+                        <td>Yes</td>
+                    {% else %}
+                        <td>No</td>
+                    {% endif %}
+                    {% if user._approved  %}
+                        <td>Yes</td>
+                    {% else  %}
+                        <td>No</td>
+                    {% endif %}
+                    <td>
+                        <a href="/admin/counsellor/remove/{{user._id.toString() }}"><span style="color:black" class="fa fa-trash-o" title="Remove" style="color:#9B111E;" aria-hidden="true"></span></button>
+                        {% if !user._admin %}
+                            <a href="/admin/counsellor/admin/{{ user._id.toString() }}"><i title="Admin" class="fa fa-fw fa-user-plus"></i></a>
+                        {% else %}
+                            <a href="/admin/counsellor/revoke/{{ user._id.toString() }}"><i title="Remove Admin" class="fa fa-fw fa-user-times" style="color:#333333;"></i></a>
+                        {% endif %}
+                    </td>
+               </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+<!-- Section: about  
+-->
+    
+<!--//End-login-form-->
+	

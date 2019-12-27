@@ -1,0 +1,80 @@
+
+<!--
+Author: Koushik M L N
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>ConfluenceEdu</title>
+<link rel="shortcut icon" href="https://confluenceedu.com/img/favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<meta name="keywords" content="ubsesklls"/>
+
+<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="css/animate.css" rel='stylesheet' type='text/css' />
+{% block customCSS %}{% endblock %}
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+	        <div class="container">
+	            <div class="navbar-header page-scroll">
+	                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+	                    <i class="fa fa-bars"></i>
+	                </button>
+	                <a class="navbar-brand" href="https://confluenceedu.com">
+	                    <h1>Confluence</h1>
+	                </a>
+	            </div>
+
+	            <!-- Collect the nav links, forms, and other content for toggling -->
+	            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+	      <ul class="nav navbar-nav">
+	        	<li ><a href="https://www.confluenceedu.com/">Home</a></li>
+                <li ><a href="https://www.confluenceedu.com/overseas-education-services/">What We Do</a></li>
+                <li ><a href="https://www.confluenceedu.com/about-us-study-abroad/">About</a></li>
+                <li ><a href="https://www.confluenceedu.com/contact-us/">Contact</a></li>
+
+
+
+	      </ul>
+	            </div>
+	            <!-- /.navbar-collapse -->
+	        </div>
+	        <!-- /.container -->
+	    </nav>
+	{% block content%}{% endblock %}
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-lg-12">
+					<div class="wow shake animated" data-wow-delay="0.4s" style="visibility: visible;-webkit-animation-delay: 0.4s; -moz-animation-delay: 0.4s; animation-delay: 0.4s;">
+					<div class="page-scroll marginbot-30">
+						<a href="#intro" id="totop" class="btn btn-circle">
+							<i class="fa fa-angle-double-up animated"></i>
+						</a>
+					</div>
+					</div>
+					<p>©Copyright 2015 - ConfluenceEdu. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/jquery.easing.min.js"></script>
+	<script src="./js/jquery.scrollTo.js"></script>
+	<script src="./js/wow.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="./js/custom.js"></script>
+    <script>
+      $(window).load(function() {
+        var theHash =  window.location.hash;
+        console.log(theHash);
+        $("html, body").animate({scrollTop:$(theHash).offset().top}, 800);
+      });
+    </script>
+</body>
+</html>

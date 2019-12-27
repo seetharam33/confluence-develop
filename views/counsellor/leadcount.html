@@ -1,0 +1,42 @@
+{% extends 'nav.html' %}
+
+{% block customCSS %}
+{% parent %}
+<link href="css/style.css" rel='stylesheet' type='text/css'/>
+{% endblock %}
+
+{% block title %}
+{% parent %}
+Lead Counts
+{% endblock %}
+
+{% block leadcountclass %}class="active"{% endblock %}
+
+{% block content %}
+{% parent %}
+
+<div class="form container-fluid">
+    <div class="row clearfix">
+        <div class="col-xs-12 col-sm-12">
+            <div class="details">
+                <table id="userData" class="table table-striped table-bordered data-table" width="100%">
+                    <thead>
+                    <tr>
+                        <th>Lead Source</th>
+                        <th>Count</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for lead in leadCountData %}
+                    <tr>
+                        <td>{{lead._id}}</td>
+                        <td>{{lead.count}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'navUser.html' %}
+
+{% block customCSS %}
+{% parent %}
+<link href="css/user.css" rel='stylesheet' type='text/css'/>
+<link href="css/style.css" rel='stylesheet' type='text/css'/>
+{% endblock %}
+
+{% block fees %}
+{% parent %}
+class="active"
+{% endblock %}
+
+{% block title %}
+{% parent %}
+Manage Fees
+{% endblock %}
+
+{% block content %}{% parent %}
+<div class="row clearfix">
+    <div class="col-xs-12 col-sm-6">
+        <h3>Manage Fees</h3>
+        <form role="form" method="POST" action="/counsellor/addFees/{{userData._id.toString()}}">
+            <div class="form-group">
+                <label for="fee_name">Fee Name</label><input type="text" class="form-control" name='fee_name'
+                                                             required id="fee_name" placeholder="Fee Name">
+            </div>
+            <div class="form-group">
+                <label for="fee_amount">Fee Amount(INR)</label><input type="number" class="form-control"
+                                                                      name='fee_amount'
+                                                                      required id="fee_amount" placeholder="Fee Amount">
+            </div>
+            <button type="submit" class="btn btn-default" style="width:50%;">Add Fee</button>
+        </form>
+    </div>
+</div>
+<hr/>
+<h3>Existing Fees</h3>
+<table id="feesData" class="table table-striped table-bordered" width="100%">
+    <thead>
+    <tr>
+        <th>Fee Name</th>
+        <th>Total Amount(INR)</th>
+        <th>Paid Amount(INR)</th>
+        <th>Due Amount(INR)</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for fee in fees %}
+    <tr>
+        <td>{{ fee.feeName}}</td>
+        <td>{{ fee.feeAmount }}</td>
+        <td>{{ fee.paidAmount }}</td>
+        <td>{{ fee.feeAmount - fee.paidAmount }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

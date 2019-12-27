@@ -1,0 +1,398 @@
+
+{% extends 'navUniv.html' %}
+
+{% block title %}
+  {% parent %}
+   Univeristy in The United States
+{% endblock %}
+
+{% block customCSS %}
+ {% parent %}
+   <link href="css/style.css" rel='stylesheet' type='text/css' />
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+    <div class="form">
+      <form>
+        <div class="row">
+          {% if error.length > 0 %}
+          <div class="alert alert-success alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              {{ error[0] }}
+            </div>
+        {% endif %}
+        {% if success.length > 0 %}
+          <div class="alert alert-success alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              {{ success[0] }}
+            </div>
+        {% endif %}
+          <div class="col-xs-12 col-sm-6 form-group">
+          <label for="university">University Name</label>
+              <input class="form-control" required class="form-group" type="text" name="university" value="{{ univData.university }}" />
+          </div>
+          <div class="col-xs-12 col-sm-6 form-group">
+          <label for="type">Univeristy Type</label>
+              <select name="type" class="form-control" value="{{ univData.type }}">
+                <option {% if univData.type == "public" %} selected {%endif%} value="public">Public</option>
+                <option {% if univData.type == "private" %} selected {%endif%} value="private">Private</option>
+              </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="coursetype">Type of Course</label>
+              <select name="coursetype" class="form-control">
+                <option {% if univData.course == "ms" %} selected {%endif%} value="ms">M.S.</option>
+                <option {% if univData.course == "mba" %} selected {%endif%} value="mba">M.B.A.</option>
+                <option{% if univData.course == "bachelor" %} selected {%endif%}  value="bachelor">Bachelors</option>
+                <option {% if univData.course == "associate" %} selected {%endif%} value="associate">Associate Degree</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="category">University Category</label>
+              <select name="category" id="category" class="form-control" value="{{ univData.category }}">
+              <option {% if univData.category == "university" %} selected {%endif%} value="univeristy">University</option>
+                <option {% if univData.category == "college" %} selected {%endif%} value="college">Community College</option>
+              </select>
+              </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="dept">Department</label>
+              <select name="dept" class="form-control">
+            <option {% if univData.department =="Aeronautics & Aviation Science" %} selected {%endif%} value="Aeronautics & Aviation Science">Aeronautics & Aviation Science</option>
+            <option {% if univData.department =="Antropology" %} selected {%endif%} value="Antropology">Antropology</option>
+<option {% if univData.department =="Archeology" %} selected {%endif%} value="Archeology">Archeology</option>
+            <option {% if univData.department =="Art" %} selected {%endif%} value="Art">Art</option>
+            <option {% if univData.department =="Business Administration" %} selected {%endif%} value="Business Administration">Business Administration</option>
+            <option {% if univData.department =="Chemistry" %} selected {%endif%} value="Chemistry">Chemistry</option>
+            <option {% if univData.department =="Dentistry" %} selected {%endif%} value="Dentistry">Dentistry</option>
+<option {% if univData.department =="Design" %} selected {%endif%} value="Design">Design</option>
+            <option{% if univData.department =="Economics" %} selected {%endif%} value="Economics">Economics</option>
+            <option {% if univData.department =="Education" %} selected {%endif%} value="Education">Education</option>
+            <option {% if univData.department =="Engineering" %} selected {%endif%} value="Engineering">Engineering</option>
+            <option {% if univData.department =="Technology & CS" %} selected {%endif%} value="Technology & CS">Technology & CS</option>
+<option {% if univData.department =="Tourism" %} selected {%endif%} value="Tourism">Tourism</option>
+            <option {% if univData.department =="Environmental Science and Health" %} selected {%endif%} value="Environmental Science and Health">Environmental Science and Health</option>
+            <option {% if univData.department =="Journalism & Mass Communication" %} selected {%endif%} value="Journalism & Mass Communication">Journalism & Mass Communication</option>
+            <option {% if univData.department =="Film & Music" %} selected {%endif%} value="Film & Music">Film & Music</option>
+            <option {% if univData.department =="Nursing" %} selected {%endif%} value="Nursing">Nursing</option>
+            <option {% if univData.department =="Oceanography" %} selected {%endif%} value="Oceanography">Oceanography</option>
+            <option {% if univData.department =="Pharmacy" %} selected {%endif%} value="Pharmacy">Pharmacy</option>
+            <option {% if univData.department =="Photography" %} selected {%endif%} value="Photography">Photography</option>
+            <option {% if univData.department =="Physical Theaphy" %} selected {%endif%} value="Physical Theaphy">Physical Theaphy</option>
+            <option {% if univData.department =="Political Science & International Relations" %} selected {%endif%} value="Political Science & International Relations">Political Science & International Relations</option>
+            <option {% if univData.department =="Psychology" %} selected {%endif%} value="Psychology">Psychology</option>
+            <option {% if univData.department =="Public Relations and Administration" %} selected {%endif%} value="Public Relations and Administration">Public Relations and Administration</option>
+            <option {% if univData.department =="Statistics" %} selected {%endif%} value="Statistics">Statistics</option>
+            <option {% if univData.department =="Urban Planing" %} selected {%endif%} value="Urban Planing">Urban Planing</option>
+            <option {% if univData.department =="Finance" %} selected {%endif%} value="Finance">Finance</option>
+            <option {% if univData.department =="Agriculture, Horticulture" %} selected {%endif%} value="Agriculture, Horticulture">Agriculture, Horticulture</option>
+            <option {% if univData.department =="Biology Science" %} selected {%endif%} value="Biology Science">Biology Science</option>
+<option {% if univData.department =="Childhood Nursing & Youth Nursing" %} selected {%endif%} value="Childhood Nursing & Youth Nursing">Childhood Nursing & Youth Nursing</option>
+<option {% if univData.department =="Social Health" %} selected {%endif%} value="Social Health">Social Health</option>
+<option {% if univData.department =="Creative Writing" %} selected {%endif%} value="Creative Writing">Creative Writing</option>
+<option {% if univData.department =="English Literature" %} selected {%endif%} value="English Literature">English Literature</option>
+<option {% if univData.department =="Geography" %} selected {%endif%} value="Geography">Geography</option>
+<option {% if univData.department =="Marine" %} selected {%endif%} value="Marine">Marine</option>
+<option {% if univData.department =="Media Studies" %} selected {%endif%} value="Media Studies">Media Studies</option>
+<option {% if univData.department =="Medical Science" %} selected {%endif%} value="Medical Science">Medical Science</option>
+<option {% if univData.department =="Sports" %} selected {%endif%} value="Sports">Sports</option>
+<option {% if univData.department =="Zoology" %} selected {%endif%} value="Zoology">Zoology</option>
+<option {% if univData.department =="Marketing" %} selected {%endif%} value="Marketing">Marketing</option>
+<option {% if univData.department =="Physiology" %} selected {%endif%} value="Physiology">Physiology</option>
+<option {% if univData.department =="Sociology" %} selected {%endif%} value="Sociology">Sociology</option>
+<option {% if univData.department =="Welsh" %} selected {%endif%} value="Welsh">Welsh</option>
+<option {% if univData.department =="Accounting and Finance" %} selected {%endif%} value="Accounting and Finance">Accounting and Finance</option>
+            <option {% if univData.department =="Law" %} selected {%endif%} value="Law">Law</option>
+<option {% if univData.department =="Management" %} selected {%endif%} value="Management">Management</option>
+            <option {% if univData.department =="Fashion" %} selected {%endif%} value="Fashion">Fashion</option>
+            <option {% if univData.department =="Hospitality" %} selected {%endif%} value="Hospitality">Hospitality</option>
+            <option {% if univData.department =="Hotel & Tourism Management" %} selected {%endif%} value="Hotel & Tourism Management">Hotel & Tourism Management </option>
+            </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 form-group">
+          <label for="usp">USP</label>
+            <textarea class="form-control" name="usp" name="usp" id="usp" rows="5" >{{univData.usp}}</textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="city">City</label>
+              <input class="form-control" class="form-group" type="text" name="city" value="{{ univData.city }}" />
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="state">State</label>
+              <input class="form-control" type="text" name="state" value="{{ univData.state }}" />
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="campus">Campus</label>
+              <input class="form-control" type="text" name="campus" value="{{ univData.campus }}"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+
+        </div>
+        <div class="row">
+
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="course">Course Name</label>
+              <input class="form-control" type="text" name="course" value="{{ univData.coursename }}" />
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="programLink">Program Link</label>
+              <input class="form-control" type="text" value={{univData.programLink}} name="programLink" placeholder="Program Link"/>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="intake">Total Intake</label>
+              <input class="form-control" type="text" name="intake" value="{{ univData.intake }}" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+        <h5>Deadlines</h5>
+          <div class="col-xs-6 col-sm-3 form-group">
+            <div class="form-group">
+              <label for="round1">Round 1 </label>
+            <input class="form-control" type="text" placeholder ="DD/MM/YYYY" name="round1" value = " {{ univData.deadline.round1 }}"  />
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3 form-group">
+
+            <div class="form-group">
+              <label for="round2">Round 2</label>
+              <input type="text" class="form-control" name="round2" value=" {{univData.deadline.round2}}" placeholder ="DD/MM/YYYY" />
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3 form-group">
+            <div class="form-group">
+              <label for="round3">Round 3 </label>
+            <input class="form-control" type="text" name="round3" placeholder ="DD/MM/YYYY" value = " {{univData.deadline.round3}}"  />
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3 form-group">
+            <div class="form-group">
+              <label for="round4">Round 4 </label>
+            <input class="form-control" type="text" name="round4" value = " {{univData.deadline.round4 }}" />
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+        <h5>Application Deadlines</h5>
+          <div class="col-xs-6 col-sm-2 form-group">
+            <div class="form-group">
+              <label for="fallround1"> Fall Round 1 </label>
+            <input class="form-control" type="text" placeholder ="DD/MM/YYYY" name="fallround1" value = "{{ univData.applicationdeadline.fallround1 }}"/>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-2 form-group">
+
+            <div class="form-group">
+              <label for="fallround2">Fall Round 2</label>
+              <input type="text" class="form-control" name="fallround2" placeholder ="DD/MM/YYYY" value = "{{univData.applicationdeadline.fallround2}}" />
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-2 form-group">
+            <div class="form-group">
+              <label for="springround1">Spring Round 1 </label>
+            <input class="form-control" type="text" name="springround1" placeholder ="DD/MM/YYYY" value = " {{univData.applicationdeadline.springround1}}" />
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3 form-group">
+            <div class="form-group">
+              <label for="springround2">Spring Round 2 </label>
+            <input class="form-control" placeholder ="DD/MM/YYYY" type="text" name="springround2" value = " {{univData.applicationdeadline.springround2 }}" />
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3 form-group">
+            <div class="form-group">
+              <label for="summerround1">Summer Round 1 </label>
+            <input class="form-control" placeholder ="DD/MM/YYYY" type="text" name="summerround1" value = " {{univData.applicationdeadline.summerround1 }}" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+        <h5>Funding Deadlines</h5>
+          <div class="col-xs-6 col-sm-4 form-group">
+            <div class="form-group">
+              <label for="fallround1"> Fall Round 1 </label>
+            <input class="form-control" type="text" placeholder ="DD/MM/YYYY" name="fallRound1" value = " {{ univData.fundingdeadline.fallround1 }}" />
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-4 form-group">
+            <div class="form-group">
+              <label for="springround1">Spring Round 1 </label>
+            <input class="form-control" type="text" name="springRound1" placeholder ="DD/MM/YYYY" value = " {{univData.applicationdeadline.springround1 }}" />
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-4 form-group">
+            <div class="form-group">
+              <label for="summerround1">Summer Round 1 </label>
+            <input class="form-control" placeholder ="DD/MM/YYYY" type="text" name="summerRound1" value = " {{ univData.applicationdeadline.summerround1 }}" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="appFee">Application Fees</label>
+              <input class="form-control" type="text" name="appFee" value="{{ univData.appFee }}"/>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="annualFee">Annual Fees</label>
+              <input class="form-control" type="text" name="annualFee" value="{{ univData.annualFee }}"/>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="scholarshipAmt">Scholarship Amount</label>
+              <input class="form-control" class="form-group" type="text" name="scholarshipAmt" value="{{ univData.scholarship.amount }} "/>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="link">Link to Scholarhsip Application</label>
+              <input class="form-control" type="text" name="link1" value="{{ univData.scholarship.url }} "/>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 form-group">
+            <div class="form-group">
+            <label for="scholarhsipDeadline">Scholarhsip Deadline</label>
+              <input class="form-control" type="text" name="scholarshipDeadline" value="{{ univData.scholarshipDeadline }}" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="SFRatio">Student To Faculty Ratio</label>
+              <input class="form-control" type="number" name="SFRatio" value="{{ univData.SFRatio }}">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="acceptanceRate">Acceptance Rate</label>
+              <input class="form-control" type="text" name="acceptanceRate" value="{{ univData.acceptanceRate }}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="gre">GRE</label>
+              <input class="form-control" type="number" name="gre" min="0" max="340" value="{{ univData.gre }}">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="gmat">GMAT</label>
+              <input class="form-control" type="number" name="gmat" min="0" max="800" value="{{ univData.gmat }}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 form-group">
+            <di0v class="form-group">
+            <label for="sat">SAT</label>
+              <input class="form-control" type="number" min="0" max="2400" name="sat" value="{{ univData.sat }}">
+            </d2iv>
+          </div>
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="satSub">SAT Subject</label>
+              <input class="form-control" type="text" name="satSub" value="{{ univ3ata.satSub }}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="ielts">IELTS</label>
+            <select name="ielts" class="form-control">
+              <option {% if univData.ielts=="0" %} selected {%endif%} value="0">0</option>
+              <option {% if univData.ielts=="1" %} selected {%endif%} value="1">1</option>
+              <option {% if univData.ielts=="2" %} selected {%endif%} value="2">2</option>
+              <option {% if univData.ielts=="2.5" %} selected {%endif%} value="2.5">2.5</option>
+              <option {% if univData.ielts=="3" %} selected {%endif%} value="3">3</option>
+              <option {% if univData.ielts=="3.5" %} selected {%endif%} value="3.5">3.5</option>
+              <option {% if univData.ielts=="4" %} selected {%endif%} value="4">4</option>
+              <option {% if univData.ielts=="4.5" %} selected {%endif%} value="4.5">4.5</option>
+              <option {% if univData.ielts=="5" %} selected {%endif%} value="5">5</option>
+              <option {% if univData.ielts=="5.5" %} selected {%endif%} value="5.5">5.5</option>
+              <option {% if univData.ielts=="6" %} selected {%endif%} value="6">6</option>
+              <option {% if univData.ielts=="6.5" %} selected {%endif%} value="6.5">6.5</option>
+              <option {% if univData.ielts=="7" %} selected {%endif%} value="7">7</option>
+              <option {% if univData.ielts=="7.5" %} selected {%endif%} value="7.5">7.5</option>
+              <option {% if univData.ielts=="8" %} selected {%endif%} value="8">8</option>
+              <option {% if univData.ielts=="8.5" %} selected {%endif%} value="8.5">8.5</option>
+              <option {% if univData.ielts=="9" %} selected {%endif%} value="9">9</option>
+            </select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="toefl">TOEFL</label>
+              <input class="form-control" type="number" min="0" max="120" name="toefl" value="{{ univData.toefl }}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="act">ACT</label>
+              <input class="form-control" type="text" name="act" value="{{ univData.act }}">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="backlogs">BackLogs</label>
+              <input class="form-control" type="text" name="backlogs" value="{{ univData.backlogs }}">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="percentInBachelor">Percentage in Bachelors</label>
+              <input class="form-control" type="text" name="percentInBachelor" value="{{ univData.percentInBachelor }}" >
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+            <label for="workExp">Work Experience</label>
+              <input class="form-control" type="text" name="workExp" value="{{ univData.workExp }}" >
+            </div>
+          </div>
+        </div>
+        <button type="submit" role="submit" class="btn btn-default btn-large center-block">SAVE</button>
+      </form>
+      <script>
+    </script>
+    </div>
+{% endblock %}

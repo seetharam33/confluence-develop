@@ -1,0 +1,78 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'supervisor',
+1 verbose cli   '--save' ]
+2 info using npm@2.14.7
+3 info using node@v4.2.1
+4 verbose install initial load of E:\confluence\package.json
+5 verbose installManyTop reading scoped package data from E:\confluence\node_modules\bcrypt-nodejs\package.json
+6 verbose installManyTop reading scoped package data from E:\confluence\node_modules\body-parser\package.json
+7 verbose installManyTop reading scoped package data from E:\confluence\node_modules\connect-flash\package.json
+8 verbose installManyTop reading scoped package data from E:\confluence\node_modules\cookie-parser\package.json
+9 verbose installManyTop reading scoped package data from E:\confluence\node_modules\debug\package.json
+10 verbose installManyTop reading scoped package data from E:\confluence\node_modules\ejs\package.json
+11 verbose installManyTop reading scoped package data from E:\confluence\node_modules\express\package.json
+12 verbose installManyTop reading scoped package data from E:\confluence\node_modules\express-session\package.json
+13 verbose installManyTop reading scoped package data from E:\confluence\node_modules\moment\package.json
+14 verbose installManyTop reading scoped package data from E:\confluence\node_modules\mongoose\package.json
+15 verbose installManyTop reading scoped package data from E:\confluence\node_modules\morgan\package.json
+16 verbose installManyTop reading scoped package data from E:\confluence\node_modules\multer\package.json
+17 verbose installManyTop reading scoped package data from E:\confluence\node_modules\nodemailer\package.json
+18 verbose installManyTop reading scoped package data from E:\confluence\node_modules\passport\package.json
+19 verbose installManyTop reading scoped package data from E:\confluence\node_modules\passport-local\package.json
+20 verbose installManyTop reading scoped package data from E:\confluence\node_modules\serve-favicon\package.json
+21 verbose installManyTop reading scoped package data from E:\confluence\node_modules\swig\package.json
+22 info package.json bcrypt-nodejs@0.0.3 No license field.
+23 info package.json passport@0.3.2 No README data
+24 info package.json connect-flash@0.1.1 No license field.
+25 info package.json passport-local@1.0.0 No license field.
+26 verbose readDependencies loading dependencies from E:\confluence\package.json
+27 silly cache add args [ 'supervisor', null ]
+28 verbose cache add spec supervisor
+29 silly cache add parsed spec Result {
+29 silly cache add   raw: 'supervisor',
+29 silly cache add   scope: null,
+29 silly cache add   name: 'supervisor',
+29 silly cache add   rawSpec: '',
+29 silly cache add   spec: '*',
+29 silly cache add   type: 'range' }
+30 silly addNamed supervisor@*
+31 verbose addNamed "*" is a valid semver range for supervisor
+32 silly addNameRange { name: 'supervisor', range: '*', hasData: false }
+33 silly mapToRegistry name supervisor
+34 silly mapToRegistry using default registry
+35 silly mapToRegistry registry https://registry.npmjs.org/
+36 silly mapToRegistry uri https://registry.npmjs.org/supervisor
+37 verbose addNameRange registry:https://registry.npmjs.org/supervisor not in flight; fetching
+38 verbose request uri https://registry.npmjs.org/supervisor
+39 verbose request no auth needed
+40 info attempt registry request try #1 at 9:55:57 PM
+41 verbose request id 185c63fef9f70fcc
+42 http request GET https://registry.npmjs.org/supervisor
+43 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+44 info attempt registry request try #2 at 9:56:08 PM
+45 http request GET https://registry.npmjs.org/supervisor
+46 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+47 info attempt registry request try #3 at 9:57:08 PM
+48 http request GET https://registry.npmjs.org/supervisor
+49 verbose stack Error: getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+49 verbose stack     at errnoException (dns.js:26:10)
+49 verbose stack     at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:77:26)
+50 verbose cwd E:\confluence\bin
+51 error Windows_NT 6.3.9600
+52 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "supervisor" "--save"
+53 error node v4.2.1
+54 error npm  v2.14.7
+55 error code ENOTFOUND
+56 error errno ENOTFOUND
+57 error syscall getaddrinfo
+58 error network getaddrinfo ENOTFOUND registry.npmjs.org registry.npmjs.org:443
+58 error network This is most likely not a problem with npm itself
+58 error network and is related to network connectivity.
+58 error network In most cases you are behind a proxy or have bad network settings.
+58 error network
+58 error network If you are behind a proxy, please make sure that the
+58 error network 'proxy' config is set properly.  See: 'npm help config'
+59 verbose exit [ 1, true ]

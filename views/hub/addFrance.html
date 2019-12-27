@@ -1,0 +1,167 @@
+
+{% extends 'nav.html' %}
+
+{% block title %}
+  {% parent %}
+  	Add Univeristy in France
+{% endblock %}
+
+{% block customCSS %}
+ {% parent %}
+   <link href="css/style.css" rel='stylesheet' type='text/css' />
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+  	<div class="form">
+  		<form action="/counsellor/addFrance" method="POST">
+  			<div class="row">
+  				{% if error.length > 0 %}
+  				<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							{{ error[0] }}
+						</div>
+				{% endif %}
+				{% if success.length > 0 %}
+  				<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							{{ success[0] }}
+						</div>
+				{% endif %}
+  				<div class="col-xs-12 col-sm-12 form-group">
+  				    <label for="university">University Name</label>
+  						<input class="form-control" required  type="text" name="university" placeholder="University Name" />
+  				</div>
+  			</div>
+  			<div class="row">
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="coursetype">Course</label>
+  						<input class="form-control" type="text" name="course" placeholder="Course" >
+  					</div>
+  				</div>
+          <div class="col-xs-12 col-sm-6 form-group">
+            <div class="form-group">
+              <label for="coursetype">Course Type</label>
+                <select name="coursetype" class="form-control">
+                <option value="bachelors">BACHELORS</option>
+                <option value="masters">MASTERS</option>
+                <option value="mba">MBA</option>
+                </select>
+            </div>
+          </div>
+        </div>
+  			<div class="row">
+  				<div class="col-xs-12 form-group">
+  				<label for="usp">USP</label>
+  					<textarea class="form-control" name="usp" id="usp" rows="5"></textarea>
+  				</div>
+  			</div>
+        <div class="row">
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="provision">Provision</label>
+  						<input class="form-control" class="form-group" type="text" name="provision" placeholder="Provision"/>
+  					</div>
+  				</div>
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="City">City</label>
+  						<input class="form-control" type="text" name="city" placeholder="City"/>
+  					</div>
+  				</div>
+        </div>
+        <div class="row">
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="fall">Deadline FALL</label>
+            <input class="form-control" type="text" name="fall" placeholder="DD/MM/YYYY" >
+  					</div>
+  				</div>
+          <div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="spring">Deadline SPRING</label>
+            <input class="form-control" type="text" name="spring" placeholder="DD/MM/YYYY" >
+  					</div>
+  				</div>
+        </div>
+  			<div class="row">
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="applicationFee">Application Fee</label>
+  						<input class="form-control" class="form-group" type="text" name="applicationFee" placeholder="Application Fee "/>
+  					</div>
+  				</div>
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="programLink">Program Link</label>
+  						<input class="form-control" type="text" name="programLink" placeholder="Program Link"/>
+  					</div>
+  				</div>
+        </div>
+  			<div class="row">
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="department">Department</label>
+  						<input class="form-control" type="text" name="department" placeholder="Department"/>
+  					</div>
+  				</div>
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="intake">Intake</label>
+  						<input class="form-control" type="text" name="intake"/>
+  					</div>
+  				</div>
+  			</div>
+  			<div class="row">
+  				<div class="col-xs-12 col-sm-4 form-group">
+  					<div class="form-group">
+  					<label for="portfolio">PortFolio</label>
+  						<input class="form-control" class="form-group" type="text" name="portfolio" placeholder="PortFolio"/>
+  					</div>
+  				</div>
+  				<div class="col-xs-12 col-sm-4 form-group">
+  					<div class="form-group">
+  					<label for="initialFee">Intial Fee</label>
+  						<input class="form-control" type="text" name="initialFee" placeholder="Initial Fee"/>
+  					</div>
+  				</div>
+          <div class="col-xs-12 col-sm-4 form-group">
+  					<div class="form-group">
+  					<label for="tutionFee">TutionFee Fee</label>
+  						<input class="form-control" type="text" name="tutionFee" placeholder="Tution Fee"/>
+  					</div>
+  				</div>
+  			</div>
+  			<div class="row">
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="gre">IELTS</label>
+  						<input class="form-control" type="number" min="0" max="9" step="0.5" name="ielts" placeholder="IELTS">
+  					</div>
+  				</div>
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="toefl">TOEFL</label>
+  						<input class="form-control" type="number" min="0" max="120" name="toefl" placeholder="TOEFL">
+  					</div>
+  				</div>
+  			</div>
+  			<div class="row">
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="act">Scholarship Amount</label>
+  						<input class="form-control" type="text" name="amount" placeholder="Scholarship Amount">
+  					</div>
+  				</div>
+  				<div class="col-xs-12 col-sm-6 form-group">
+  					<div class="form-group">
+  					<label for="url">Scholarship Url</label>
+  						<input class="form-control" type="text" name="url" placeholder="Scholarship Url">
+  					</div>
+  				</div>
+  			</div>
+  			<button type="submit" role="submit" class="btn btn-default btn-large center-block">ADD UNIVERISTY</button>
+  		</form>
+  	</div>
+{% endblock %}

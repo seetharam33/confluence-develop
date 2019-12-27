@@ -1,0 +1,55 @@
+
+{% extends 'nav.html' %}
+
+{% block title %}
+  {% parent %}
+    Admin Panel
+{% endblock %}
+
+{% block userclass %}class="active"{% endblock %}
+
+{% block customCSS %}
+ {% parent %}
+   <link href="css/style.css" rel='stylesheet' type='text/css' />
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+    <table id="userData" class="table table-striped table-bordered" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>E-Mail</th>
+                                    <th>Phone</th>
+                                    <th>Email Confirmed</th>
+                                    <th>status</th>
+                                    <th>Last Login</th>
+                                    <th>Description</th>
+                                    <th>Counsellor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in userData.usersadded  %}
+                                   <tr>
+                                        <td><a href="/hub/userDetails/{{ user._id.toString() }}">{{ user.first_name }} {{ user.last_name }}</a></td> 
+                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.phone.mobile }}</td>
+                                        {% if user._email  %}
+                                            <td>Yes</td>
+                                        {% else %}
+                                            <td>No</td>
+                                        {% endif %}
+                                        <td>{{ user.lead.Status }}</td>
+                                        <td>{{ user.lastLogin }}
+                                        <td>{{ user.description }}
+                                        <td>{{ user.assignedCounsellor.first_name }} {{ user.assignedCounsellor.last_name}}</td>
+                                   </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+{% endblock %}
+
+<!-- Section: about -->
+    
+<!--//End-login-form-->
+    

@@ -1,0 +1,35 @@
+
+{% extends 'nav.html' %}
+
+{% block title %}
+  {% parent %}
+    Bulk Message to Associates
+{% endblock %}
+
+{% block associateclass %}class="active"{% endblock %}
+
+{% block customCSS %}
+ {% parent %}
+   <link href="css/style.css" rel='stylesheet' type='text/css' />
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+  <form class=" message" method="post" enctype="multipart/form-data" action="/counsellor/bulkMessageAssociate">
+  	<div class="row">
+  		<div class="col-xs-12">Attach Files upto 10MB Only
+         <input type="file" name='attach' id="attach" multiple >
+		    <div class="input-group form-group">
+		      <textarea rows="4" cols="50" name="message" class="form-control"></textarea>
+		      <span class="input-group-btn">
+		        <button class="btn btn-default"  type="submit">Send</button>
+		      </span>
+		    </div>
+		</div>
+    </div>
+  </form>
+{% endblock %}
+
+<!-- Section: about -->
+
+<!--//End-login-form-->

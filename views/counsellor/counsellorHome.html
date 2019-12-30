@@ -20,11 +20,18 @@ function get_country() {
     var action = document.getElementsByTagName("option")[x].value;
     if (action=="UK") {
         var ielts = document.getElementById("ielts").value;
-        var gre = document.getElementById("gre").value;
+        var toefl = document.getElementById("toefl").value;
+        var pte = document.getElementById("pte").value;
         document.getElementById("main_form").action = "/counsellor/viewUk?gre="+gre+"?ielts="+ielts;
         document.getElementById("main_form").submit();
     }
     else if (action=="USA") {
+        // var ielts = document.getElementById("ielts").value;
+        // var gre = document.getElementById("gre").value;
+        // var sat = document.getElementById("sat").value;
+        // var pte = document.getElementById("pte").value;
+        // var gmat = document.getElementById("gmat").value;
+        // var toefl = document.getElementById("toefl").value;
         document.getElementById("main_form").action = "/counsellor/viewUsa";
         document.getElementById("main_form").submit();
     }

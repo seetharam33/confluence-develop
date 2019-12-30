@@ -4848,50 +4848,43 @@ router.post('/GermanyDetails/:id', counsellorValidate, function (req, res, next)
 });
 
 router.get('/viewUk', function (req, res, next) {
-    var givengre=req.query.gre;
+    var givenpte=req.query.pte;
     var givenielts=req.query.ielts;
+    var giventoefl=req.query.toefl;
     id=[];
          k=0;
         var b = {};
          l=0;
     uk.find({}, function (err, UkData) {
-         
-        
-        //console.log(UkData.length);
         for(i=0;i<UkData.length;i++)
         {
-            var tofel=Object.values(UkData[i]._doc)[12];
+            var pte=Object.values(UkData[i]._doc)[11];
+            var toefl=Object.values(UkData[i]._doc)[12];
             var ielts=Object.values(UkData[i]._doc)[13];
             if(givenielts>=ielts)
             {
                 id[k]=Object.values(UkData[i]._id);
-                b[k]=UkData[i]
-                k=k+1;
-                
+                b[k]=UkData[i];
+                k=k+1; 
             }
-            
+            else if(giventoefl>=toefl)
+            {
+                id[k]=Object.values(UkData[i]._id);
+                b[k]=UkData[i];
+                k=k+1;
+            }
+            else if(givenpte>=pte)
+            {
+                id[k]=Object.values(UkData[i]._id);
+                b[k]=UkData[i];
+                k=k+1;
+            }  
         }
         for(i=0;i<k-1;i++)
         {
             console.log(b[i]);
 
         }
-        //   for(i=0;i<id.length;i++)
-        //   {
-        //       console.log("2222222");
-        //       iddd=UkData[i]._id;
-        //         uk.findById(iddd,(err,result)=>{
-        //         b[l] = result;
-        //         console.log("333333");
-        //         l=l+1;
-                
-                  
-        //         return;
-                  
-        //       });  
-        //     }
-        
-            console.log("4444444");
         res.render('counsellor/viewUk', {'univData': b});
     });
     

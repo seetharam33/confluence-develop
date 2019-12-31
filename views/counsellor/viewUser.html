@@ -31,8 +31,14 @@ Personal Details
             document.getElementById("main_form").submit();
         }
         else if (action=="USA") {
+            var ielts = document.getElementById("ielts").value;
+            var gre = document.getElementById("gre").value;
+            var sat = document.getElementById("sat").value;
+            var pte = document.getElementById("pte").value;
+            var gmat = document.getElementById("gmat").value;
+            var toefl = document.getElementById("toefl").value;
             document.getElementById("main_form").method="GET";
-            document.getElementById("main_form").action = "/counsellor/viewUsa";
+            document.getElementById("main_form").action = "/counsellor/viewUsa?pte="+pte+"?ielts="+ielts+"?toefl="+toefl+"?gre="+gre+"?sat="+sat+"?gmat="+gmat;
             document.getElementById("main_form").submit();
         }
     };

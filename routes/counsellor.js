@@ -4215,7 +4215,67 @@ router.post('/addnz', counsellorValidate, function (req, res, next) {
 });
 
 router.get('/viewUsa', counsellorValidate, function (req, res, next) {
-    usa.find({}, function (err, usaData) {
+    console.log("---------"+"cpming");
+    var givenpte=req.query.pte;
+    var givenielts=req.query.ielts;
+    var giventoefl=req.query.toefl;
+    var givensat=req.query.sat;
+    var givengre=req.query.gre;
+    var givengmat=req.query.gmat;
+    id=[];
+         k=0;
+        var b = {};
+         l=0;
+        usa.find({}, function (err, usaData) {
+        for(i=0;i<usaData.length;i++)
+        {
+            var gre=Object.values(usaData[i]._doc)[20];
+            var gmat=Object.values(usaData[i]._doc)[21];
+            var sat=Object.values(usaData[i]._doc)[22];
+            var ielts=Object.values(usaData[i]._doc)[25];
+            var toefl=Object.values(usaData[i]._doc)[26];
+            var backlogs=Object.values(usaData[i]._doc)[27];
+        
+
+
+            if(givenielts>=ielts)
+            {
+                id[k]=Object.values(usaData[i]._id);
+                b[k]=usaData[i];
+                k=k+1; 
+            }
+            else if(giventoefl>=toefl)
+            {
+                id[k]=Object.values(usaData[i]._id);
+                b[k]=usaData[i];
+                k=k+1;
+            }
+            else if(givengre>=gre)
+            {
+                id[k]=Object.values(usaData[i]._id);
+                b[k]=usaData[i];
+                k=k+1;
+            } 
+            else if(givensat>=sat)
+            {
+                id[k]=Object.values(usaData[i]._id);
+                b[k]=usaData[i];
+                k=k+1;
+            }
+            else if(givengmat>=gmat)
+            {
+                id[k]=Object.values(usaData[i]._id);
+                b[k]=usaData[i];
+                k=k+1;
+            }
+ 
+        }
+        for(i=0;i<k-1;i++)
+        {
+            console.log(b[i]);
+
+        }
+  
         res.render('counsellor/viewUsa', {'univData': usaData});
     });
 });
